@@ -28,10 +28,11 @@ import com.example.uikit.R
 @Preview(showBackground = true)
 fun WelcomeText(
     text: String = "Добро пожаловать!",
-    iconEnable: Boolean = true
+    iconEnable: Boolean = true,
+    modifier: Modifier = Modifier
 ){
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().then(modifier),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
@@ -53,4 +54,11 @@ fun WelcomeText(
             fontWeight = FontWeight.Bold,
         )
     }
+}
+
+
+
+@Composable
+fun HelpWellcome(){
+
 }

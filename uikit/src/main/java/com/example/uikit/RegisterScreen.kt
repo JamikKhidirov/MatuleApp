@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.uikit.screencomponents.WelcomeText
 
 
 @Composable
@@ -31,6 +33,10 @@ fun RegisterScreenBottom(paddingValues: PaddingValues) {
     Column(modifier = Modifier.fillMaxSize()
         .padding(paddingValues)){
 
-        Row {  }
+        WelcomeText(
+            modifier = Modifier.padding(
+                top = 59.dp
+            )
+        )
     }
 }
