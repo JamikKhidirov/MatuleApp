@@ -22,10 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.uikit.R
+import com.example.uikit.theme.sfProDisplay
 
 
 @Composable
-@Preview(showBackground = true)
 fun WelcomeText(
     text: String = "Добро пожаловать!",
     iconEnable: Boolean = true,
@@ -34,7 +34,6 @@ fun WelcomeText(
     Row(
         modifier = Modifier.fillMaxWidth().then(modifier),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
     ) {
 
        if (iconEnable){
@@ -59,6 +58,15 @@ fun WelcomeText(
 
 
 @Composable
-fun HelpWellcome(){
-
+@Preview(showBackground = true)
+fun HelpWellcomeText(
+    modifier: Modifier = Modifier
+){
+    Text(
+        text = "Войдите, чтобы пользоваться функциями приложения",
+        fontSize = 15.sp,
+        fontFamily = sfProDisplay,
+        color = Color.Black,
+        modifier = modifier
+    )
 }
