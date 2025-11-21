@@ -45,7 +45,10 @@ fun TextInputUser(
         modifier = modifier,
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = colorResource(R.color.textFildConteynerColor),
-            focusedContainerColor = colorResource(R.color.textFildConteynerColor)
+            focusedContainerColor = colorResource(R.color.textFildConteynerColor),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+
         ),
         visualTransformation = if (!passwordViz) PasswordVisualTransformation() else VisualTransformation.None,
         onValueChange = {text ->

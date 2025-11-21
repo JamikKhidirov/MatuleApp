@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.uikit.screencomponents.HelpWellcomeText
+import com.example.uikit.screencomponents.TextInputUser
 import com.example.uikit.screencomponents.WelcomeText
 
 
@@ -24,14 +25,27 @@ fun RegisterScreen(){
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {paddingValues ->
-        RegisterScreenBottom(paddingValues)
+        RegisterScreenBottom(
+            paddingValues = paddingValues,
+            onClickVizIcon = {
+
+            },
+            onTextValueUser = {userText ->
+
+            }
+        )
     }
 }
 
 
 
 @Composable
-fun RegisterScreenBottom(paddingValues: PaddingValues) {
+fun RegisterScreenBottom(
+    paddingValues: PaddingValues,
+    onClickVizIcon: () -> Unit,
+    onTextValueUser: (String) -> Unit,
+
+                         ) {
     Column(modifier = Modifier.fillMaxSize()
         .padding(paddingValues)){
 
@@ -50,7 +64,17 @@ fun RegisterScreenBottom(paddingValues: PaddingValues) {
                     .padding(top = 23.dp)
 
             )
+
+
         }
+
+        TextInputUser(
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 20.dp)
+                .padding(top = 50.dp),
+            onClickVizIcon = onClickVizIcon,
+            onTextValueUser = onTextValueUser
+        )
 
     }
 }
