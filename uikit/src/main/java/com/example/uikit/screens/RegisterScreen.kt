@@ -2,6 +2,7 @@ package com.example.uikit.screens
 
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,10 +20,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.uikit.R
 import com.example.uikit.screencomponents.buttons.ButtonScreens
+import com.example.uikit.screencomponents.buttons.OutLineButtonScreens
 import com.example.uikit.screencomponents.buttons.textBtn
 import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
@@ -81,7 +85,7 @@ fun RegisterScreenBottom(
         ) {
             WelcomeText(
                 modifier = Modifier.padding(
-                    top = 59.dp
+                    top = 40.dp
                 )
             )
 
@@ -96,7 +100,7 @@ fun RegisterScreenBottom(
 
         TextDescription(
             modifier = Modifier
-                .padding(top = 60.dp)
+                .padding(top = 50.dp)
                 .padding(start = 20.dp),
             colorText = colorResource(R.color.TextDescriptionColor)
         )
@@ -143,11 +147,45 @@ fun RegisterScreenBottom(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center)
-                .padding(top = 15.dp)
+                .padding(top = 25.dp)
                 .clickable{
 
             },
         )
+
+
+        Column (
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .padding(top = 60.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            TextDescription(
+                text = "Или войдите с помощью",
+                modifier = Modifier.fillMaxWidth()
+                    .wrapContentSize(Alignment.Center)
+            )
+
+            OutLineButtonScreens(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+
+                }
+            )
+
+            OutLineButtonScreens(
+
+                modifier = Modifier.fillMaxWidth(),
+                painter = painterResource(R.drawable.yndexvector),
+                text = "Войти с Yandex",
+                isYndex = true,
+                onClick = {
+
+            })
+
+
+        }
 
 
 

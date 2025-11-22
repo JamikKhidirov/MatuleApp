@@ -24,8 +24,3 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-@Preview(showBackground = true)
-fun text(){
-    Text("Привет андроид")
-}

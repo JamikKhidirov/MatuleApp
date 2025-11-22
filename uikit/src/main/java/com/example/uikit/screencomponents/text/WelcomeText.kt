@@ -58,7 +58,7 @@ fun HelpWellcomeText(
     modifier: Modifier = Modifier
 ){
     Text(
-        text = "Войдите, чтобы пользоваться функциями приложения",
+        text = "Войдите, чтобы пользоваться функциями\nприложения",
         fontSize = 15.sp,
         fontFamily = sfProDisplay,
         color = Color.Black,

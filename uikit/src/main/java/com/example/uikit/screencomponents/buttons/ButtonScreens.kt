@@ -36,7 +36,7 @@ fun ButtonScreens(
             disabledContainerColor = colorResource(R.color.dizableConteinerButtonColor),
             disabledContentColor = Color.White
         ),
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(15.dp)
     ) {
         Text(
             text = text,
