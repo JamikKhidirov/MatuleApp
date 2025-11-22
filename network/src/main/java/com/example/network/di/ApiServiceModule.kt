@@ -5,6 +5,8 @@ import com.example.network.service.ApiOrderService
 import com.example.network.service.ApiProjectService
 import com.example.network.service.ApiShopService
 import com.example.network.service.ApiUserService
+import com.example.network.statenetworkmodel.NetworkInstance
+import com.example.network.statenetworkmodel.NetworkState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +20,7 @@ import javax.inject.Singleton
 object ApiServiceModule {
 
 
+    @NetworkInstance(NetworkState.USERSERVICE)
     @Provides
     @Singleton
     fun providerUserService(retrofit: Retrofit): ApiUserService {
@@ -25,24 +28,31 @@ object ApiServiceModule {
     }
 
 
+    @NetworkInstance(NetworkState.SHOPSERVICE)
     @Provides
     @Singleton
     fun providerShopService(retrofit: Retrofit): ApiShopService {
         return retrofit.create(ApiShopService::class.java)
     }
 
+
+    @NetworkInstance(NetworkState.PROJECTSERVICE)
     @Provides
     @Singleton
     fun providerProjectService(retrofit: Retrofit): ApiProjectService {
         return retrofit.create(ApiProjectService::class.java)
     }
 
+
+    @NetworkInstance(NetworkState.ORDERSERVICE)
     @Provides
     @Singleton
     fun providerOrderService(retrofit: Retrofit): ApiOrderService {
         return retrofit.create(ApiOrderService::class.java)
     }
 
+
+    @NetworkInstance(NetworkState.BACKETSERVICE)
     @Provides
     @Singleton
     fun providerBacketService(retrofit: Retrofit): ApiBacketService {
