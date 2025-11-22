@@ -1,5 +1,9 @@
 package com.example.uikit.screencomponents
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -12,6 +16,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -34,10 +40,20 @@ fun TextInputUser(
     passwordTextInput: Boolean = false,
     passwordViz: Boolean = true,
     modifier: Modifier = Modifier,
+    isRotation: Boolean = true,
+    isGender: Boolean = false,
     onClickVizIcon: () -> Unit = {}
 ){
 
     var userText by remember { mutableStateOf("") }
+
+
+    val rotation by animateFloatAsState(
+        targetValue = if (isRotation) 180f else 0f,
+        label = "",
+        animationSpec = tween(300)
+    )
+
 
     TextField(
         value = userText,
@@ -68,17 +84,35 @@ fun TextInputUser(
         trailingIcon = {
            if (passwordTextInput){
                IconButton(
-                   onClick = {
-                       onClickVizIcon()
-                   }
+                   onClick = onClickVizIcon,
+                   modifier = Modifier.size(20.dp)
                ) {
                    Icon(
                        painter = if (passwordViz) painterResource(R.drawable.passwordviz)
                        else painterResource(R.drawable.passwordinviz),
-                       contentDescription = ""
+                       contentDescription = null,
+                       modifier = Modifier.size(20.dp)
                    )
                }
            }
+
+            else if (isGender){
+                IconButton(
+                    onClick = onClickVizIcon,
+                    modifier = Modifier.size(20.dp)
+
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.dropmenuicon),
+                        contentDescription = null,
+                        modifier = Modifier.size(10.dp)
+                            .rotate(rotation)
+
+
+                    )
+                }
+           }
+
         }
     )
 }
