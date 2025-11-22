@@ -18,7 +18,10 @@ interface ApiProjectService {
 
     @Multipart
     @POST("/collections/project/records")
-    suspend fun createProject(@PartMap parts: Map<String, RequestBody>): Response<Project>
+    suspend fun createProject(
+        //Принимает данные в RequestProject
+        @PartMap parts: Map<String, RequestBody>
+    ): Response<Project>
 
 
 }
