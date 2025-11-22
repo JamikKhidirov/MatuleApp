@@ -20,7 +20,6 @@ import retrofit2.http.Path
 
 interface ApiUserService {
 
-
     @POST("/collections/users/records")
     suspend fun createUser(@Body requestRegister: RequestRegister): Response<ResponseRegister>
 
@@ -38,7 +37,7 @@ interface ApiUserService {
 
 
     @POST("/collections/users/auth-with-password")
-    suspend fun logInUser(@Body requestAuth: RequestAuth): ResponseAuth
+    suspend fun logInUser(@Body requestAuth: RequestAuth): Response<ResponseAuth>
 
 
     @GET("/collections/_authOrigins/records")
