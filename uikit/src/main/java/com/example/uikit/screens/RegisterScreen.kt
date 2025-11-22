@@ -1,30 +1,36 @@
 package com.example.uikit.screens
 
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.uikit.R
-import com.example.uikit.screencomponents.HelpWellcomeText
-import com.example.uikit.screencomponents.TextDescription
-import com.example.uikit.screencomponents.TextInputUser
-import com.example.uikit.screencomponents.WelcomeText
+import com.example.uikit.screencomponents.buttons.ButtonScreens
+import com.example.uikit.screencomponents.buttons.textBtn
+import com.example.uikit.screencomponents.text.HelpWellcomeText
+import com.example.uikit.screencomponents.text.TextDescription
+import com.example.uikit.screencomponents.textInput.TextInputUser
+import com.example.uikit.screencomponents.text.WelcomeText
 
 
 @Composable
-@Preview
+@Preview()
 fun RegisterScreen(){
 
     var isRotation by remember { mutableStateOf(false) }
@@ -37,8 +43,12 @@ fun RegisterScreen(){
         RegisterScreenBottom(
             paddingValues = paddingValues,
             isRotation = isRotation,
+            enableButton = true,
             onClickVizIcon = {
                 isRotation = !isRotation
+            },
+            onClickLogInButton = {
+
             },
             onTextEmailUser = {EmailText ->
                 email = EmailText
@@ -56,7 +66,9 @@ fun RegisterScreen(){
 fun RegisterScreenBottom(
     paddingValues: PaddingValues,
     isRotation: Boolean,
+    enableButton: Boolean,
     onClickVizIcon: () -> Unit,
+    onClickLogInButton: () -> Unit,
     onTextEmailUser: (String) -> Unit,
     onTextPasswordUser: (String) -> Unit,
     ) {
@@ -83,14 +95,16 @@ fun RegisterScreenBottom(
         }
 
         TextDescription(
-            modifier = Modifier,
+            modifier = Modifier
+                .padding(top = 60.dp)
+                .padding(start = 20.dp),
             colorText = colorResource(R.color.TextDescriptionColor)
         )
 
         TextInputUser(
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 20.dp)
-                .padding(top = 50.dp),
+                .padding(top = 4.dp),
             onClickVizIcon = onClickVizIcon,
             onTextValueUser = onTextEmailUser,
             isRotation = isRotation,
@@ -98,11 +112,41 @@ fun RegisterScreenBottom(
             isGender = false
         )
 
+        TextDescription(
+            modifier = Modifier
+                .padding(top = 15.dp)
+                .padding(start = 20.dp),
+            colorText = colorResource(
+                R.color.TextDescriptionColor
+            ),
+            text = "Пороль"
+        )
+
         TextInputUser(
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 20.dp)
                 .padding(top = 4.dp),
-            onTextValueUser = onTextPasswordUser
+            onTextValueUser = onTextPasswordUser,
+            placeholder = null
+        )
+
+        ButtonScreens(
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 20.dp)
+                .padding(top = 15.dp)
+                .height(56.dp),
+            enableButton = enableButton,
+            onClickButton = onClickLogInButton
+        )
+
+        textBtn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentSize(Alignment.Center)
+                .padding(top = 15.dp)
+                .clickable{
+
+            },
         )
 
 

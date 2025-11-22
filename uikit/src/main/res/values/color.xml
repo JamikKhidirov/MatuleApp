@@ -2,4 +2,7 @@
 <resources>
     <color name="textFildConteynerColor">#EBEBEB</color>
     <color name="TextDescriptionColor">#7E7E9A</color>
+    <color name="buttonColor">#1A6FEE</color>
+    <color name="dizableConteinerButtonColor">#C9D4FB</color>
+    <color name="textBtnColor">#2074F2</color>
 </resources>
