@@ -35,23 +35,31 @@ import com.example.uikit.screencomponents.text.WelcomeText
 
 @Composable
 @Preview()
-fun RegisterScreen(){
+fun LogInScreenScreen(){
 
     var isRotation by remember { mutableStateOf(false) }
+    var passwordViz by remember { mutableStateOf(false) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {paddingValues ->
-        RegisterScreenBottom(
+        LogInScreenBottom(
             paddingValues = paddingValues,
             isRotation = isRotation,
             enableButton = true,
+            passwordViz = passwordViz,
             onClickVizIcon = {
-                isRotation = !isRotation
+                passwordViz = !passwordViz
+            },
+            onClickVkLog = {
+
             },
             onClickLogInButton = {
+
+            },
+            onClickYndexLogIn = {
 
             },
             onTextEmailUser = {EmailText ->
@@ -67,10 +75,13 @@ fun RegisterScreen(){
 
 
 @Composable
-fun RegisterScreenBottom(
+fun LogInScreenBottom(
     paddingValues: PaddingValues,
     isRotation: Boolean,
     enableButton: Boolean,
+    passwordViz: Boolean,
+    onClickVkLog: () -> Unit,
+    onClickYndexLogIn: () -> Unit,
     onClickVizIcon: () -> Unit,
     onClickLogInButton: () -> Unit,
     onTextEmailUser: (String) -> Unit,
@@ -109,7 +120,6 @@ fun RegisterScreenBottom(
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 20.dp)
                 .padding(top = 4.dp),
-            onClickVizIcon = onClickVizIcon,
             onTextValueUser = onTextEmailUser,
             isRotation = isRotation,
             passwordTextInput = false,
@@ -131,6 +141,9 @@ fun RegisterScreenBottom(
                 .padding(horizontal = 20.dp)
                 .padding(top = 4.dp),
             onTextValueUser = onTextPasswordUser,
+            onClickVizIcon = onClickVizIcon,
+            passwordViz = passwordViz,
+            passwordTextInput = true,
             placeholder = null
         )
 
@@ -169,26 +182,18 @@ fun RegisterScreenBottom(
 
             OutLineButtonScreens(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {
-
-                }
+                onClick = onClickVkLog
             )
 
             OutLineButtonScreens(
-
                 modifier = Modifier.fillMaxWidth(),
                 painter = painterResource(R.drawable.yndexvector),
                 text = "Войти с Yandex",
                 isYndex = true,
-                onClick = {
-
-            })
+                onClick = onClickYndexLogIn)
 
 
         }
-
-
-
 
     }
 }
