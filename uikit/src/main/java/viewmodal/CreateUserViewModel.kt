@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateUserViewModel @Inject constructor(
-    val userApi: ApiUserService
+    private val userApi: ApiUserService
 ): ViewModel() {
 
     var loading = MutableStateFlow(false)
@@ -110,9 +110,4 @@ class CreateUserViewModel @Inject constructor(
 
         return userApi.updateUser(userId, params)
     }
-
-
 }
-
-
-

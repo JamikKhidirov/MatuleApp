@@ -1,6 +1,7 @@
 package com.example.uikit.screens
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,12 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,13 +48,23 @@ fun LogInScreenScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+
+    val enableButton by remember(email, password) {
+        derivedStateOf {
+            email.isNotEmpty() && password.isNotEmpty()
+        }
+    }
+
     Scaffold(
         modifier = Modifier.fillMaxSize()
+            .background(Color.White)
     ) {paddingValues ->
         LogInScreenBottom(
             paddingValues = paddingValues,
+            email = email,
+            password = password,
             isRotation = isRotation,
-            enableButton = true,
+            enableButton = enableButton,
             passwordViz = passwordViz,
             onClickTextRegister = {
 
@@ -83,6 +96,8 @@ fun LogInScreenScreen(
 @Composable
 fun LogInScreenBottom(
     paddingValues: PaddingValues,
+    email: String,
+    password: String,
     isRotation: Boolean,
     enableButton: Boolean,
     passwordViz: Boolean,
@@ -124,11 +139,13 @@ fun LogInScreenBottom(
         )
 
         TextInputUser(
+            value = email,
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 20.dp)
                 .padding(top = 4.dp),
             onTextValueUser = onTextEmailUser,
             isRotation = isRotation,
+            passwordViz = true,
             passwordTextInput = false,
             isGender = false
         )
@@ -144,6 +161,7 @@ fun LogInScreenBottom(
         )
 
         TextInputUser(
+            value = password,
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 20.dp)
                 .padding(top = 4.dp),

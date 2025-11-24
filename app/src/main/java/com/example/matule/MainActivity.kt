@@ -15,9 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MatuleTheme {
-                LogInScreenScreen()
-            }
+            LogInScreenScreen()
         }
     }
 }
