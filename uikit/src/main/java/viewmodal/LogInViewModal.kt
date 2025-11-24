@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LogInViewModal @Inject constructor(
-    val api: ApiUserService
+    private val api: ApiUserService
 ) : ViewModel(){
 
     var uiState by mutableStateOf(LogInUiState())

@@ -74,7 +74,7 @@ fun TextInputUser(
             unfocusedIndicatorColor = Color.Transparent,
 
         ),
-        visualTransformation = if (passwordViz) PasswordVisualTransformation() else VisualTransformation.None,
+        visualTransformation = if (!passwordViz) PasswordVisualTransformation() else VisualTransformation.None,
         onValueChange = onTextValueUser,
 
         placeholder = {

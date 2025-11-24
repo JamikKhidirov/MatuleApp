@@ -156,7 +156,7 @@ fun CreateUserScreen(
                             firstName = userName,
                             secondName = patronymic,
                             lastName = surname,
-                            datebirthday = date,
+                            datebirthday     = date,
                             gender = gender,
                             email = email
                         )
