@@ -12,16 +12,21 @@ import retrofit2.http.PartMap
 import retrofit2.http.Path
 
 
+
+//Интерфейс действий с корзиной
 interface ApiBacketService {
 
 
+    //Создание корзины
     @POST("collections/cart/records")
     suspend fun createBucket(@Body requestCart: RequestCart): Response<ResponseCart>
 
 
+    //Изменение корзины/обновление корзины
     @Multipart
     @PATCH("collections/cart/records/{id_bucket}")
     suspend fun updateUserBacket(
+        //ID корзины которые хотим обновить
         @Path("id_bucket") id: String,
         //Принимает данные в RequestCart
         @PartMap parts: Map<String, @JvmSuppressWildcards RequestBody>

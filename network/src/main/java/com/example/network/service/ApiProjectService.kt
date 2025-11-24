@@ -11,11 +11,14 @@ import retrofit2.http.POST
 import retrofit2.http.PartMap
 
 
+//Интерфейс для действий с проектами
 interface ApiProjectService {
 
+    //Получение списка проектов
     @GET("collections/project/records")
     suspend fun getListProject(): Response<ResponsesProject>
 
+    //Создание проекта
     @Multipart
     @POST("collections/project/records")
     suspend fun createProject(
