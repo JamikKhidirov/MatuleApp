@@ -112,6 +112,9 @@ fun LogInScreenScreen(
             },
             onClickLogInButton = {
                 viewModal.logIn(email = email, password = password)
+                if (state.isSuccess){
+                    navController.navigate(Destination.HomeScreen)
+                }
             },
             onClickYndexLogIn = {
 
