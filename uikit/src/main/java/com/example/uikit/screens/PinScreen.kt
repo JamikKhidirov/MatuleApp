@@ -18,6 +18,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.difference
 import com.example.uikit.R
 
 import androidx.compose.ui.res.painterResource
@@ -33,6 +34,7 @@ import com.example.uikit.screencomponents.text.TextDescription
 @Composable
 @Preview(showBackground = true)
 fun PinScreen(
+    firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
 ) {
 
@@ -72,11 +74,16 @@ fun PinScreen(
                     modifier = Modifier.padding(top = 100.dp)
                 )
 
-                TextDescription(
-                    text = "Для защиты ваших персональных данных",
-                    fontSize = 15.sp,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
+
+                if (firstTextScreen == "Cоздайте пороль"){
+                    TextDescription(
+                        text = "Для защиты ваших персональных данных",
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
+                }
+
+
                 PinIndicator(
                     pinLength = pinLength,
                     enteredLength = enteredPin.length,

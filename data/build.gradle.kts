@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 
-    id("com.google.dagger.hilt.android") version "2.57.2" apply false
+    id("com.google.dagger.hilt.android") version "2.57.2"
     kotlin("kapt")
 
 

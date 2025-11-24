@@ -26,12 +26,12 @@ class TokenDataStore @Inject constructor(
 
     val tokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            preferences[TOKEN_KEY] as String
+            preferences[TOKEN_KEY] ?: ""
         }
 
     val idTokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            preferences[ID_TOKEN] as String
+            preferences[ID_TOKEN] ?: ""
         }
 
 
@@ -51,6 +51,11 @@ class TokenDataStore @Inject constructor(
     suspend fun clearToken() {
         context.dataStore.edit { preferences ->
             preferences.remove(TOKEN_KEY)
+        }
+    }
+
+    suspend fun clearIdToken(){
+        context.dataStore.edit { preferences ->
             preferences.remove(ID_TOKEN)
         }
     }
