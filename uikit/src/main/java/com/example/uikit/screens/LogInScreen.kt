@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,6 +22,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.uikit.R
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.buttons.OutLineButtonScreens
@@ -31,11 +31,14 @@ import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
+import viewmodal.LogInViewModal
 
 
 @Composable
 @Preview()
-fun LogInScreenScreen(){
+fun LogInScreenScreen(
+    viewModal: LogInViewModal = hiltViewModel()
+){
 
     var isRotation by remember { mutableStateOf(false) }
     var passwordViz by remember { mutableStateOf(false) }
@@ -50,6 +53,9 @@ fun LogInScreenScreen(){
             isRotation = isRotation,
             enableButton = true,
             passwordViz = passwordViz,
+            onClickTextRegister = {
+
+            },
             onClickVizIcon = {
                 passwordViz = !passwordViz
             },
@@ -80,6 +86,7 @@ fun LogInScreenBottom(
     isRotation: Boolean,
     enableButton: Boolean,
     passwordViz: Boolean,
+    onClickTextRegister: () -> Unit,
     onClickVkLog: () -> Unit,
     onClickYndexLogIn: () -> Unit,
     onClickVizIcon: () -> Unit,
@@ -162,8 +169,8 @@ fun LogInScreenBottom(
                 .wrapContentSize(Alignment.Center)
                 .padding(top = 25.dp)
                 .clickable{
-
-            },
+                    onClickTextRegister()
+                },
         )
 
 
@@ -192,8 +199,6 @@ fun LogInScreenBottom(
                 isYndex = true,
                 onClick = onClickYndexLogIn)
 
-
         }
-
     }
 }

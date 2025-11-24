@@ -13,11 +13,11 @@ import retrofit2.http.PartMap
 
 interface ApiProjectService {
 
-    @GET("/collections/project/records")
+    @GET("collections/project/records")
     suspend fun getListProject(): Response<ResponsesProject>
 
     @Multipart
-    @POST("/collections/project/records")
+    @POST("collections/project/records")
     suspend fun createProject(
         //Принимает данные в RequestProject
         @PartMap parts: Map<String, RequestBody>

@@ -11,14 +11,14 @@ import retrofit2.http.Query
 
 interface ApiShopService {
 
-    @GET("/collections/news/records")
+    @GET("collections/news/records")
     suspend fun getNews(): Response<ResponsesNews>
 
 
-    @GET("/collections/products/records")
+    @GET("collections/products/records")
     suspend fun getListProductSearch(@Query("filter") filter: String): Response<ResponseProducts>
 
-    @GET("/collections/products/records/{id_product}")
+    @GET("collections/products/records/{id_product}")
     suspend fun getDescriptionProduct(@Path("id_product") id: String): Response<Product>
 
 

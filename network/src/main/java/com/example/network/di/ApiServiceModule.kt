@@ -20,7 +20,6 @@ import javax.inject.Singleton
 object ApiServiceModule {
 
 
-    @NetworkInstance(NetworkState.USERSERVICE)
     @Provides
     @Singleton
     fun providerUserService(retrofit: Retrofit): ApiUserService {
@@ -28,7 +27,6 @@ object ApiServiceModule {
     }
 
 
-    @NetworkInstance(NetworkState.SHOPSERVICE)
     @Provides
     @Singleton
     fun providerShopService(retrofit: Retrofit): ApiShopService {
@@ -44,7 +42,7 @@ object ApiServiceModule {
     }
 
 
-    @NetworkInstance(NetworkState.ORDERSERVICE)
+
     @Provides
     @Singleton
     fun providerOrderService(retrofit: Retrofit): ApiOrderService {
@@ -52,7 +50,7 @@ object ApiServiceModule {
     }
 
 
-    @NetworkInstance(NetworkState.BACKETSERVICE)
+
     @Provides
     @Singleton
     fun providerBacketService(retrofit: Retrofit): ApiBacketService {

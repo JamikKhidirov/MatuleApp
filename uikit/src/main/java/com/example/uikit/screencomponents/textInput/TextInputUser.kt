@@ -2,10 +2,13 @@ package com.example.uikit.screencomponents.textInput
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -15,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -32,6 +36,7 @@ import com.example.uikit.theme.sfProDisplay
 @Composable
 @Preview(showBackground = true)
 fun TextInputUser(
+    value: String = "",
     onTextValueUser: (String) -> Unit = {},
     placeholder: String? = "example@gmail.com",
     passwordTextInput: Boolean = false,
@@ -42,7 +47,6 @@ fun TextInputUser(
     onClickVizIcon: () -> Unit = {}
 ){
 
-    var userText by remember { mutableStateOf("") }
 
 
     val rotation by animateFloatAsState(
@@ -52,10 +56,17 @@ fun TextInputUser(
     )
 
 
+
+
+
     TextField(
-        value = userText,
+        value = value,
         shape = RoundedCornerShape(10.dp),
-        modifier = modifier,
+        modifier = modifier.clip(RoundedCornerShape(10.dp))
+            .border(
+                1.dp,
+                color = colorResource(R.color.lineTextFildColor)
+            ),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = colorResource(R.color.textFildConteynerColor),
             focusedContainerColor = colorResource(R.color.textFildConteynerColor),
@@ -64,10 +75,7 @@ fun TextInputUser(
 
         ),
         visualTransformation = if (passwordViz) PasswordVisualTransformation() else VisualTransformation.None,
-        onValueChange = {text ->
-            userText = text
-            onTextValueUser(text)
-        },
+        onValueChange = onTextValueUser,
 
         placeholder = {
             placeholder?.let {
@@ -79,37 +87,32 @@ fun TextInputUser(
             }
         },
         trailingIcon = {
-           if (passwordTextInput){
-               IconButton(
-                   onClick = onClickVizIcon,
-                   modifier = Modifier.size(20.dp)
-               ) {
-                   Icon(
-                       painter = if (passwordViz) painterResource(R.drawable.passwordviz)
-                       else painterResource(R.drawable.passwordinviz),
-                       contentDescription = null,
-                       modifier = Modifier.size(20.dp)
-                   )
-               }
-           }
-
-            else if (isGender){
-                IconButton(
-                    onClick = onClickVizIcon,
-                    modifier = Modifier.size(20.dp)
-
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.dropmenuicon),
-                        contentDescription = null,
-                        modifier = Modifier.size(10.dp)
-                            .rotate(rotation)
-
-
-                    )
+            when {
+                passwordTextInput -> {
+                    IconButton(onClick = onClickVizIcon) {
+                        Icon(
+                            painter = painterResource(
+                                if (passwordViz) R.drawable.passwordviz
+                                else R.drawable.passwordinviz
+                            ),
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
                 }
-           }
 
+                isGender -> {
+                    IconButton(onClick = onClickVizIcon) {
+                        Icon(
+                            painter = painterResource(R.drawable.dropmenuicon),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(12.dp)
+                                .rotate(rotation)
+                        )
+                    }
+                }
+            }
         }
     )
 }
