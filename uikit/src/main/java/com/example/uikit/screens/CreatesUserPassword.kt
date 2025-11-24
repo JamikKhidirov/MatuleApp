@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.indicators.PinIndicator
 import com.example.uikit.screencomponents.text.TextDescription
@@ -24,8 +25,10 @@ import com.example.uikit.screencomponents.textInput.TextInputUser
 
 
 @Composable
-@Preview(showBackground = true)
-fun CreateUserPassword(){
+
+fun CreateUserPassword(
+    navCloneable: NavController
+){
 
     var newpass by remember { mutableStateOf("") }
     var confirmpass by remember { mutableStateOf("") }

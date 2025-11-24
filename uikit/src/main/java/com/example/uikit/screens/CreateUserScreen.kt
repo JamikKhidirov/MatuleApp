@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
@@ -29,9 +30,9 @@ import viewmodal.CreateUserViewModel
 
 @SuppressLint("RememberReturnType")
 @Composable
-@Preview(showBackground = true)
 fun CreateUserScreen(
-    viewModel: CreateUserViewModel = hiltViewModel()
+    viewModel: CreateUserViewModel = hiltViewModel(),
+    navController: NavController
 ){
 
     var userName by remember { mutableStateOf("") }
