@@ -22,12 +22,13 @@ import com.example.uikit.screencomponents.indicators.PinIndicator
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
+import navigation.Destination
 
 
 @Composable
 
 fun CreateUserPassword(
-    navCloneable: NavController
+    navController: NavController
 ){
 
     var newpass by remember { mutableStateOf("") }
@@ -111,7 +112,7 @@ fun CreateUserPassword(
                     .height(56.dp),
                 enableButton = enableButton,
                 onClickButton = {
-
+                    navController.navigate(Destination.CreatePincodeScreen)
                 }
             )
 

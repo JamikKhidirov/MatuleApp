@@ -20,8 +20,14 @@ sealed interface Destination {
     data object AuthGraph : Destination
 
 
+
+    //Экраны
     @Serializable
     data object LogInScreen: Destination
+
+
+    @Serializable
+    data object HomeScreen: Destination
 
     @Serializable
     data object CreateUserScreen: Destination

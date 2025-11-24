@@ -25,6 +25,8 @@ import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.launch
+import navigation.Destination
+import retrofit2.Response
 import viewmodal.CreateUserViewModel
 
 
@@ -131,6 +133,9 @@ fun CreateUserScreen(
                 placeholder = "Пол",
                 isGender = true,
                 isRotation = isRotation,
+                onTextValueUser = { genderText ->
+                    gender = genderText
+                },
                 onClickVizIcon = {
                     isRotation = !isRotation
                 },
@@ -162,6 +167,8 @@ fun CreateUserScreen(
                             email = email
                         )
                     }
+
+                    navController.navigate(Destination.CreateUserPassword)
                 }
             )
         }

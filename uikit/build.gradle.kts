@@ -54,7 +54,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.57.2")
 
     // Navigation Compose с поддержкой типобезопасной навигации
-    implementation("androidx.navigation:navigation-compose:2.9.6")
+    api("androidx.navigation:navigation-compose:2.9.6")
 
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0") // Используйте актуальную версию

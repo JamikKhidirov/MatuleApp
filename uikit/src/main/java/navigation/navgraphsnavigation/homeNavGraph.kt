@@ -14,8 +14,8 @@ fun NavGraphBuilder.homeNavGraph(
     navHostController: NavHostController
 ){
 
-    navigation<Destination.Home>(startDestination = Destination.Home){
-        composable<Destination.Home>{
+    navigation<Destination.Home>(startDestination = Destination.HomeScreen){
+        composable<Destination.HomeScreen>{
             HomeScreen()
         }
     }
