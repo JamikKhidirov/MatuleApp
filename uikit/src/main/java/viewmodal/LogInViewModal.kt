@@ -3,15 +3,11 @@ package viewmodal
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.TokenDataStore
 import com.example.network.data.userdata.RequestAuth
-import com.example.network.data.userdata.RequestUser
 import com.example.network.service.ApiUserService
-import com.example.network.statenetworkmodel.NetworkInstance
-import com.example.network.statenetworkmodel.NetworkState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
