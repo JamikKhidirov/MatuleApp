@@ -1,132 +1,139 @@
 package com.example.uikit.screens
 
 
-
-
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.difference
+import com.example.uikit.R
+
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.uikit.screencomponents.buttons.PinDigitButton
 import com.example.uikit.screencomponents.indicators.PinIndicator
+import com.example.uikit.screencomponents.text.TextDescription
 
 
 @Composable
 @Preview(showBackground = true)
-fun PinScreen(onPinEntered: (String) -> Unit = {}) {
-    val pinLength = 4 // Требуемая длина PIN-кода
+fun PinScreen(
+    firstTextScreen: String = "Cоздайте пороль",
+    onPinEntered: (String) -> Unit = {}
+) {
 
-    // Состояние, хранящее введенный PIN-код
+    val pinLength = 4
     var enteredPin by remember { mutableStateOf("") }
 
-    // Лямбда-функция для обработки нажатия цифры
-    val onNumberClick: (String) -> Unit = { digit ->
+    fun onNumberClick(d: String) {
         if (enteredPin.length < pinLength) {
-            enteredPin += digit
-            if (enteredPin.length == pinLength) {
-                // Если PIN-код введен полностью
-                onPinEntered(enteredPin)
-                // Очистка PIN-кода может быть добавлена здесь
-                // enteredPin = ""
-            }
+            enteredPin += d
+            if (enteredPin.length == pinLength) onPinEntered(enteredPin)
         }
     }
 
-    // Лямбда-функция для стирания последнего символа
-    val onDeleteClick: () -> Unit = {
-        if (enteredPin.isNotEmpty()) {
-            enteredPin = enteredPin.dropLast(1)
-        }
+    fun onDelete() {
+        if (enteredPin.isNotEmpty()) enteredPin = enteredPin.dropLast(1)
     }
 
-    Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+            .background(Color.White)
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
-                .padding(32.dp),
+                .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // Заголовок и Индикатор
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(
-                    text = "Введите 4-значный код",
+                    text = "Создайте пороль",
                     style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(bottom = 32.dp)
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp,
+                    modifier = Modifier.padding(top = 100.dp)
                 )
+
+
+                if (firstTextScreen == "Cоздайте пороль"){
+                    TextDescription(
+                        text = "Для защиты ваших персональных данных",
+                        fontSize = 15.sp,
+                        modifier = Modifier.padding(top = 16.dp)
+                    )
+                }
+
+
                 PinIndicator(
                     pinLength = pinLength,
                     enteredLength = enteredPin.length,
-                    modifier = Modifier.padding(bottom = 64.dp)
+                    modifier = Modifier.padding(top = 56.dp)
                 )
             }
 
             // Клавиатура
-            // Кнопки от 1 до 9 (3 ряда по 3 кнопки)
             Column(
-                modifier = Modifier.fillMaxWidth(0.8f), // Ограничиваем ширину
-                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(top = 60.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                // Ряды 1-3
-                for (i in 0..2) {
+
+                // Ряды 1–9
+                for (row in 0..2) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(24.dp)
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        for (j in 1..3) {
-                            val digit = (i * 3 + j).toString()
-                            PinDigitButton(
-                                digit = digit,
-                                onClick = onNumberClick,
-                                modifier = Modifier.size(80.dp)
-                            )
+                        for (col in 1..3) {
+                            val digit = (row * 3 + col).toString()
+                            PinDigitButton(digit, onClick = ::onNumberClick, content = null)
                         }
                     }
                 }
 
-                // Нижний ряд (0, Пусто, Стереть)
+                // Нижний ряд
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(24.dp)
+                    horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    // Пустая "заглушка" для выравнивания
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.size(80.dp))
 
-                    // Кнопка 0 (посередине)
-                    PinDigitButton(
-                        digit = "0",
-                        onClick = onNumberClick,
-                        modifier = Modifier.size(80.dp)
-                    )
+                    PinDigitButton("0", onClick = ::onNumberClick, content = null)
 
-                    // Кнопка "Стереть" (справа)
                     PinDigitButton(
-                        digit = "delete", // Используем другое значение для идентификации
-                        onClick = { onDeleteClick() },
-                        modifier = Modifier.size(80.dp),
+                        digit = "delete",
+                        isArrayBack = true,
+                        onClick = { onDelete() },
                         content = {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "Стереть",
+                                painter = painterResource(R.drawable.deleteicon),
+                                contentDescription = "Delete",
                                 tint = Color.Black
+
                             )
                         }
                     )
                 }
             }
-
-            Spacer(modifier = Modifier.height(1.dp)) // Небольшой отступ внизу
         }
     }
 }

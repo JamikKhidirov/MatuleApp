@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uikit.R
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.buttons.OutLineButtonScreens
@@ -35,6 +39,7 @@ import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
 import viewmodal.LogInViewModal
+import viewmodal.states.UiEvent
 
 
 @Composable
@@ -48,6 +53,31 @@ fun LogInScreenScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    val state = viewModal.uiState
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(state.isSuccess) {
+        if (state.isSuccess){
+
+        }
+    }
+
+
+    // ловим ошибки
+    LaunchedEffect(viewModal.events) {
+        viewModal.events.collect { event ->
+            when(event) {
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(
+                        message = event.message,
+                        actionLabel = "OK"
+                    )
+                }
+            }
+        }
+    }
+
 
     val enableButton by remember(email, password) {
         derivedStateOf {
@@ -57,7 +87,10 @@ fun LogInScreenScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
+        }
     ) {paddingValues ->
         LogInScreenBottom(
             paddingValues = paddingValues,
@@ -76,7 +109,7 @@ fun LogInScreenScreen(
 
             },
             onClickLogInButton = {
-
+                viewModal.logIn(email = email, password = password)
             },
             onClickYndexLogIn = {
 

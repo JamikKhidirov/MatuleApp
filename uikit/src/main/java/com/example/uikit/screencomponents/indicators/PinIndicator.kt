@@ -1,8 +1,10 @@
 package com.example.uikit.screencomponents.indicators
 
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -15,8 +17,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.uikit.R
 
 
 @Composable
@@ -34,7 +38,7 @@ fun PinIndicator(
             val isFilled = index < enteredLength
 
             val color: Color by animateColorAsState(
-                targetValue = if (isFilled) Color.Blue else Color.LightGray,
+                targetValue = if (isFilled) colorResource(R.color.buttonColor) else Color.White,
                 animationSpec = tween(durationMillis = 200)
             )
 
@@ -43,7 +47,11 @@ fun PinIndicator(
                     .padding(horizontal = 4.dp)
                     .size(16.dp)
                     .clip(CircleShape)
+                    .border(1.dp,
+                        colorResource(R.color.buttonColor),
+                        shape = CircleShape)
                     .background(color)
+
             )
         }
     }
