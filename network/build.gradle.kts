@@ -37,9 +37,9 @@ android {
 }
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.13.2")
-    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    api("com.google.code.gson:gson:2.13.2")
+    api("com.squareup.retrofit2:retrofit:3.0.0")
+    api("com.squareup.retrofit2:converter-gson:3.0.0")
 
     implementation("com.google.dagger:hilt-android:2.57.2")
     kapt("com.google.dagger:hilt-compiler:2.57.2")

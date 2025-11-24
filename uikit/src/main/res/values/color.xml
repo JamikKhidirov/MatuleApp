@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textFildConteynerColor">#EBEBEB</color>
+    <color name="textFildConteynerColor">#F5F5F9</color>
+    <color name="lineTextFildColor">#EBEBEB</color>
     <color name="TextDescriptionColor">#7E7E9A</color>
     <color name="buttonColor">#1A6FEE</color>
     <color name="dizableConteinerButtonColor">#C9D4FB</color>

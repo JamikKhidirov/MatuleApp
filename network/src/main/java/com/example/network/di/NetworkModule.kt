@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
-val BASE_URL = "https://api.matule.ru/api"
+val BASE_URL = "https://api.matule.ru/api/"
 
 
 @Module

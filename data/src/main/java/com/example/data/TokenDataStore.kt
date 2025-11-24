@@ -24,12 +24,12 @@ class TokenDataStore @Inject constructor(
         val ID_TOKEN = stringPreferencesKey("id_token")
     }
 
-    val tokenFlow: Flow<String> = context.dataStore.data
+    val tokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
             preferences[TOKEN_KEY] as String
         }
 
-    val idTokenFlow: Flow<String> = context.dataStore.data
+    val idTokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
             preferences[ID_TOKEN] as String
         }

@@ -20,30 +20,31 @@ import retrofit2.http.Path
 
 interface ApiUserService {
 
-    @POST("/collections/users/records")
+    @POST("collections/users/records")
     suspend fun createUser(@Body requestRegister: RequestRegister): Response<ResponseRegister>
 
 
-    @GET("/collections/users/records/{id_user}")
+    @GET("collections/users/records/{id_user}")
     suspend fun getUserInfoById(@Path("id_user") id: String): Response<User>
 
 
     @Multipart
-    @PATCH("/collections/users/records/{id_user}")
+    @PATCH("collections/users/records/{id_user}")
     suspend fun updateUser(
         @Path("id_user") id: String,
+        //поля в RequestUser
         @PartMap params: Map<String, @JvmSuppressWildcards RequestBody>
     ): Response<User>
 
 
-    @POST("/collections/users/auth-with-password")
+    @POST("collections/users/auth-with-password")
     suspend fun logInUser(@Body requestAuth: RequestAuth): Response<ResponseAuth>
 
 
-    @GET("/collections/_authOrigins/records")
+    @GET("collections/_authOrigins/records")
     suspend fun getUserIdToken(): UsersAuth
 
 
-    @DELETE("/collections/_authOrigins/records/{id_token}")
+    @DELETE("collections/_authOrigins/records/{id_token}")
     suspend fun deleteUser(@Path("id_token") idToken: String)
 }
