@@ -22,7 +22,7 @@ import retrofit2.http.Path
 //Интерфейс для управления пользователями
 interface ApiUserService {
 
-    //Сохдание пользователя/Регистрация
+    //Создание пользователя/Регистрация
     @POST("collections/users/records")
     suspend fun createUser(@Body requestRegister: RequestRegister): Response<ResponseRegister>
 

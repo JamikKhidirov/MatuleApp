@@ -26,12 +26,12 @@ class TokenDataStore @Inject constructor(
 
     val tokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            preferences[TOKEN_KEY] ?: ""
+            preferences[TOKEN_KEY]
         }
 
     val idTokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            preferences[ID_TOKEN] ?: ""
+            preferences[ID_TOKEN]
         }
 
 

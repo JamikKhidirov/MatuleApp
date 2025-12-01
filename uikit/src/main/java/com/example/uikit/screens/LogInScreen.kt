@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.uikit.R
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.buttons.OutLineButtonScreens
@@ -38,14 +39,15 @@ import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
+import navigation.Destination
 import viewmodal.LogInViewModal
 import viewmodal.states.UiEvent
 
 
 @Composable
-@Preview()
 fun LogInScreenScreen(
-    viewModal: LogInViewModal = hiltViewModel()
+    viewModal: LogInViewModal = hiltViewModel(),
+    navController: NavController
 ){
 
     var isRotation by remember { mutableStateOf(false) }
@@ -100,7 +102,7 @@ fun LogInScreenScreen(
             enableButton = enableButton,
             passwordViz = passwordViz,
             onClickTextRegister = {
-
+                navController.navigate(Destination.CreateUserScreen)
             },
             onClickVizIcon = {
                 passwordViz = !passwordViz
@@ -110,6 +112,9 @@ fun LogInScreenScreen(
             },
             onClickLogInButton = {
                 viewModal.logIn(email = email, password = password)
+                if (state.isSuccess){
+                    navController.navigate(Destination.HomeScreen)
+                }
             },
             onClickYndexLogIn = {
 

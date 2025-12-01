@@ -3,7 +3,11 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
+
+    id("org.jetbrains.kotlin.plugin.serialization")
+
     kotlin("kapt")
+
 
 }
 
@@ -48,6 +52,12 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.57.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
     implementation("com.google.dagger:hilt-android:2.57.2")
+
+    // Navigation Compose с поддержкой типобезопасной навигации
+    api("androidx.navigation:navigation-compose:2.9.6")
+
+    // Kotlin Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0") // Используйте актуальную версию
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -26,6 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.uikit.screencomponents.buttons.PinDigitButton
 import com.example.uikit.screencomponents.indicators.PinIndicator
 import com.example.uikit.screencomponents.text.TextDescription
@@ -34,6 +36,7 @@ import com.example.uikit.screencomponents.text.TextDescription
 @Composable
 @Preview(showBackground = true)
 fun PinScreen(
+    navController: NavController = rememberNavController(),
     firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
 ) {

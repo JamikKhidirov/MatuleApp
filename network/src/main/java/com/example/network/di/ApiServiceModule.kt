@@ -5,8 +5,8 @@ import com.example.network.service.ApiOrderService
 import com.example.network.service.ApiProjectService
 import com.example.network.service.ApiShopService
 import com.example.network.service.ApiUserService
-import com.example.network.statenetworkmodel.NetworkInstance
-import com.example.network.statenetworkmodel.NetworkState
+import com.example.network.statenetworkmodel.RetrofitInstance
+import com.example.network.statenetworkmodel.RetrofitNetworkState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,6 @@ object ApiServiceModule {
     }
 
 
-    @NetworkInstance(NetworkState.PROJECTSERVICE)
     @Provides
     @Singleton
     fun providerProjectService(retrofit: Retrofit): ApiProjectService {

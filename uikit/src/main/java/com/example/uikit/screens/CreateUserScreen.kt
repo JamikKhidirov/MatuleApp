@@ -19,19 +19,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.launch
+import navigation.Destination
+import retrofit2.Response
 import viewmodal.CreateUserViewModel
 
 
 @SuppressLint("RememberReturnType")
 @Composable
-@Preview(showBackground = true)
 fun CreateUserScreen(
-    viewModel: CreateUserViewModel = hiltViewModel()
+    viewModel: CreateUserViewModel = hiltViewModel(),
+    navController: NavController
 ){
 
     var userName by remember { mutableStateOf("") }
@@ -130,6 +133,9 @@ fun CreateUserScreen(
                 placeholder = "Пол",
                 isGender = true,
                 isRotation = isRotation,
+                onTextValueUser = { genderText ->
+                    gender = genderText
+                },
                 onClickVizIcon = {
                     isRotation = !isRotation
                 },
@@ -156,11 +162,12 @@ fun CreateUserScreen(
                             firstName = userName,
                             secondName = patronymic,
                             lastName = surname,
-                            datebirthday     = date,
+                            datebirthday = date,
                             gender = gender,
                             email = email
                         )
                     }
+                    navController.navigate(Destination.CreateUserPassword)
                 }
             )
         }
