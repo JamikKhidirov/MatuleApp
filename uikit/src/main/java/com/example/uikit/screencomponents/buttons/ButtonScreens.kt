@@ -69,9 +69,9 @@ fun ButtonScreens(
 @Composable
 fun prevButton(){
     ButtonScreens(
-        modifier = Modifier.width(100.dp)
+        modifier = Modifier.width(200.dp)
             .height(50.dp),
-        loading = true,
+        loading = false,
         enableButton = true,
     ) {  }
 }

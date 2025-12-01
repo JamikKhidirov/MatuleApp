@@ -13,7 +13,7 @@ import navigation.Destination
 
 
 
-fun NavGraphBuilder.authNavGraph(
+fun NavGraphBuilder. authNavGraph(
     navController: NavHostController,
 ){
 
