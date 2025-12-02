@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.uikit.screencomponents.appbars.CardTabBar
 import com.example.uikit.screencomponents.appbars.bottomNavigationBars
 
 
@@ -21,6 +22,7 @@ import com.example.uikit.screencomponents.appbars.bottomNavigationBars
 fun HomeScreen(){
 
 
+    var tabIndex by remember { mutableStateOf(0) }
     var indexScreen: Int by remember { mutableStateOf(0) }
 
     Scaffold(
@@ -35,16 +37,35 @@ fun HomeScreen(){
         }
     ) {
         paddingValues ->
-        BottomHomeScreen(paddingValues)
+        BottomHomeScreen(
+            paddingValues = paddingValues,
+            onSelectedTab = { selectTabIndex ->
+                tabIndex = selectTabIndex
+            }
+        )
     }
 }
 
 @Composable
 fun BottomHomeScreen(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onSelectedTab: (index: Int) -> Unit
 ){
     Column(
         modifier = Modifier.fillMaxSize()
             .padding(paddingValues)
-    ) {  }
+    ) {
+        val tabs = listOf("Все", "Мужчинам", "Женщинам")
+        var selectedTabIndex by remember { mutableStateOf(0) }
+
+        CardTabBar(
+            options = tabs,
+            selectedIndex = selectedTabIndex,
+            onSelect = { indexTab ->
+                selectedTabIndex = indexTab
+                onSelectedTab(indexTab)
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

@@ -7,5 +7,7 @@
     <color name="dizableConteinerButtonColor">#C9D4FB</color>
     <color name="textBtnColor">#2074F2</color>
     <color name="outLineButtonColor">#EBEBEB</color>
+    <color name="castomTabbacgroundColor">#F5F5F9</color>
+    <color name="castomTabContentColor">#7E7E9A</color>
 
 </resources>
