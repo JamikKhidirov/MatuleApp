@@ -60,7 +60,7 @@ fun bottomNavigationBars(
 
        items.forEachIndexed { index, item ->
            NavigationBarItem(
-               selected = index == index,
+               selected = index == currentindex,
                colors =  NavigationBarItemDefaults.colors(
                    selectedTextColor = colorResource(R.color.textBtnColor),
                    selectedIconColor = colorResource(R.color.textBtnColor),
@@ -76,7 +76,9 @@ fun bottomNavigationBars(
                        painter = item.icon,
                        contentDescription = null,
                        modifier = Modifier.size(32.dp),
-                       tint = if (index == currentindex) colorResource(R.color.textBtnColor) else Color(0xFFB8C1CC)
+                       tint = if (index == currentindex)
+                           colorResource(R.color.textBtnColor)
+                       else Color(0xFFB8C1CC)
                    )
                },
                label = {
