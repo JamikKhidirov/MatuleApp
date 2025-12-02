@@ -9,5 +9,6 @@
     <color name="outLineButtonColor">#EBEBEB</color>
     <color name="castomTabbacgroundColor">#F5F5F9</color>
     <color name="castomTabContentColor">#7E7E9A</color>
+    <color name="productDescColor">#939396</color>
 
 </resources>
