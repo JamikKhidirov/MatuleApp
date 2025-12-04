@@ -30,6 +30,7 @@ import com.example.uikit.R
 fun ButtonScreens(
     text: String = "Далее",
     modifier: Modifier = Modifier,
+    shape: Int = 15,
     loading: Boolean = false,
     enableButton: Boolean = true,
     onClickButton: () -> Unit = {},
@@ -44,7 +45,7 @@ fun ButtonScreens(
             disabledContainerColor = colorResource(R.color.dizableConteinerButtonColor),
             disabledContentColor = Color.White
         ),
-        shape = RoundedCornerShape(15.dp)
+        shape = RoundedCornerShape(shape.dp)
     ) {
         if (loading){
             CircularProgressIndicator(
