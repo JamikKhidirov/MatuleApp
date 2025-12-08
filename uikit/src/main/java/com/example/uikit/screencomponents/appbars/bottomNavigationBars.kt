@@ -91,6 +91,4 @@ fun bottomNavigationBars(
            )
        }
     }
-
-
 }
