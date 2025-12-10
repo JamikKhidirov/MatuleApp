@@ -3,6 +3,7 @@ package navigation
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 
 import androidx.compose.animation.slideOutHorizontally
@@ -32,7 +33,7 @@ fun AppNavGraph(
             slideInHorizontally(
                 tween(400),
                 initialOffsetX =  {
-                    it + 10
+                    it
                 }
             ) + fadeIn(
                 animationSpec = tween(
@@ -44,10 +45,28 @@ fun AppNavGraph(
             slideOutHorizontally(
                 tween(400),
                 targetOffsetX = {
-                    100
+                    -it
                 }
+            ) + fadeOut(
+                animationSpec = tween(400)
             )
         },
+
+        popEnterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> -fullWidth }, // начинается слева за экраном
+                animationSpec = tween(400)
+            ) + fadeIn(animationSpec = tween(400))
+        },
+
+        popExitTransition = {
+            // Закрытие текущего экрана при возврате
+            slideOutHorizontally(
+                targetOffsetX = { fullWidth -> fullWidth }, // уходит вправо
+                animationSpec = tween(400)
+            ) + fadeOut(animationSpec = tween(400))
+        }
+
     ){
         authNavGraph(navController)
         homeNavGraph(navHostController = navController)

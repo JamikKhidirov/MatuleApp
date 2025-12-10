@@ -14,7 +14,7 @@ import navigation.Destination
 import navigation.HomeDestination
 
 
-fun NavGraphBuilder. authNavGraph(
+fun NavGraphBuilder.authNavGraph(
     navController: NavHostController,
 ){
 

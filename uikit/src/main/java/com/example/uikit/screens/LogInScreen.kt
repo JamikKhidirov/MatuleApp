@@ -65,9 +65,6 @@ fun LogInScreenScreen(
         if (state.isSuccess){
             navController.navigate(HomeDestination.HomeScreen)
         }
-        else{
-            snackbarHostState.showSnackbar("Неверный Email или пороль")
-        }
     }
 
 
