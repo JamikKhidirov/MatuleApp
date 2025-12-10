@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -59,7 +60,7 @@ fun bottomNavigationBars(
 
        items.forEachIndexed { index, item ->
            NavigationBarItem(
-               selected = index == index,
+               selected = index == currentindex,
                colors =  NavigationBarItemDefaults.colors(
                    selectedTextColor = colorResource(R.color.textBtnColor),
                    selectedIconColor = colorResource(R.color.textBtnColor),
@@ -75,7 +76,9 @@ fun bottomNavigationBars(
                        painter = item.icon,
                        contentDescription = null,
                        modifier = Modifier.size(32.dp),
-                       tint = if (index == currentindex) colorResource(R.color.textBtnColor) else Color(0xFFB8C1CC)
+                       tint = if (index == currentindex)
+                           colorResource(R.color.textBtnColor)
+                       else Color(0xFFB8C1CC)
                    )
                },
                label = {
@@ -88,6 +91,4 @@ fun bottomNavigationBars(
            )
        }
     }
-
-
 }

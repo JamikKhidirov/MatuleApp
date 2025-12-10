@@ -39,7 +39,9 @@ import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
+import navigation.AuthDestination
 import navigation.Destination
+import navigation.HomeDestination
 import viewmodal.LogInViewModal
 import viewmodal.states.UiEvent
 
@@ -61,7 +63,10 @@ fun LogInScreenScreen(
 
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess){
-
+            navController.navigate(HomeDestination.HomeScreen)
+        }
+        else{
+            snackbarHostState.showSnackbar("Неверный Email или пороль")
         }
     }
 
@@ -102,7 +107,7 @@ fun LogInScreenScreen(
             enableButton = enableButton,
             passwordViz = passwordViz,
             onClickTextRegister = {
-                navController.navigate(Destination.CreateUserScreen)
+                navController.navigate(AuthDestination.CreateUserScreen)
             },
             onClickVizIcon = {
                 passwordViz = !passwordViz
@@ -113,7 +118,7 @@ fun LogInScreenScreen(
             onClickLogInButton = {
                 viewModal.logIn(email = email, password = password)
                 if (state.isSuccess){
-                    navController.navigate(Destination.HomeScreen)
+                    navController.navigate(HomeDestination.HomeScreen)
                 }
             },
             onClickYndexLogIn = {
