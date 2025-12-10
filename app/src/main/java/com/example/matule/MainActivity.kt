@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navcontroller = rememberNavController()
             AppNavGraph(
+                isLogInUser = false,
                 navController = navcontroller
             )
         }
