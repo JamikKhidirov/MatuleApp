@@ -7,17 +7,23 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.uikit.screens.HomeScreen
 import navigation.Destination
-
+import navigation.HomeDestination
 
 
 fun NavGraphBuilder.homeNavGraph(
     navHostController: NavHostController
 ){
 
-    navigation<Destination.Home>(startDestination = Destination.HomeScreen){
-        composable<Destination.HomeScreen>{
+    navigation<HomeDestination.HomeRoot>(startDestination = HomeDestination.HomeScreen){
+        composable<HomeDestination.HomeScreen>{
             HomeScreen()
         }
+
+        composable<HomeDestination.BascketScreen>{
+
+            //Экран BacketScreen для корзины
+        }
+
     }
 }
 

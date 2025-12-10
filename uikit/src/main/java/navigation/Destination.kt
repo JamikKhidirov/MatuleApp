@@ -3,42 +3,72 @@ package navigation
 import kotlinx.serialization.Serializable
 
 
+
+
 @Serializable
-sealed interface Destination {
+sealed interface Destination
 
-    // Маршрут без аргументов (Главный экран)
+
+
+@Serializable
+sealed interface AuthDestination: Destination {
+
+    //Путь Auth графа
     @Serializable
-    data object Home : Destination
+    data object AuthRoot: AuthDestination
 
-    // Маршрут с аргументом (Экран деталей)
-    // Item должен быть @Serializable data class или object
+
+    //Путь LoginScreen экрана
     @Serializable
-    data class Details(val item: MySerializableData) : Destination
+    data object LoginScreen: AuthDestination
 
-    // Базовый маршрут для вложенного графа (например, Аутентификация)
+
+    //Путь CreateAccount экрана
     @Serializable
-    data object AuthGraph : Destination
+    data object CreateUserScreen: AuthDestination
 
-
-
-    //Экраны
+    //Путь CreatePassword экрана
     @Serializable
-    data object LogInScreen: Destination
+    data object CreateUserPasswordScreen: AuthDestination
 
 
+    //Путь CreatePinCode экрана
     @Serializable
-    data object HomeScreen: Destination
+    data object CreateUserPincodeScreen: AuthDestination
 
-    @Serializable
-    data object CreateUserScreen: Destination
 
-    @Serializable
-    data object CreateUserPassword: Destination
 
-    @Serializable
-    data object CreatePincodeScreen
+    companion object {
+        //Метод указывать на путь графа для NavHosta
+        fun getStartRoute() = AuthRoot
+    }
 
 }
+
+
+@Serializable
+sealed interface HomeDestination: Destination {
+
+    //Путь Home графа
+    @Serializable
+    data object HomeRoot: HomeDestination
+
+
+    @Serializable
+    data object HomeScreen: HomeDestination
+
+
+    //Экран корзины
+    @Serializable
+    data object BascketScreen: HomeDestination
+
+
+    companion object {
+        //Метод указывать на путь графа для NavHosta
+        fun getHomeRoom() = HomeRoot
+    }
+}
+
 
 
 

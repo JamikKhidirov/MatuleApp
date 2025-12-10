@@ -35,6 +35,7 @@ import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.launch
+import navigation.AuthDestination
 import navigation.Destination
 import viewmodal.CreateUserViewModel
 
@@ -163,7 +164,7 @@ fun CreateUserPassword(
                                     snackbarHostState.showSnackbar(
                                         message = "Регистрация успешна"
                                     )
-                                    navController.navigate(Destination.CreatePincodeScreen)
+                                    navController.navigate(AuthDestination.CreateUserPincodeScreen)
                                 }
                             }
                         }

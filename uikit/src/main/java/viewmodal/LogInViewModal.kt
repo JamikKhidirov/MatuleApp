@@ -1,5 +1,6 @@
 package viewmodal
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -38,6 +39,7 @@ class LogInViewModal @Inject constructor(
                 when(response.isSuccessful){
                     true -> {
                         val body = response.body() ?: throw Exception("Нету данных")
+                        Log.d("network",body.toString())
                         tokenDataStore.clearToken()
                         tokenDataStore.saveToken(body.token)
 
@@ -49,6 +51,7 @@ class LogInViewModal @Inject constructor(
                             isLoading = false,
                             error = "Неверный email или пароль"
                         )
+                        Log.d("network",response.body().toString())
                         _events.emit(UiEvent.ShowSnackbar("Неверный email или пароль"))
                         return@launch
                     }
