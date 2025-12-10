@@ -13,10 +13,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.uikit.R
 import com.example.uikit.screencomponents.appbars.CardTabBar
 import com.example.uikit.screencomponents.appbars.bottomNavigationBars
@@ -63,7 +65,8 @@ fun BottomHomeScreen(
 ){
     Column(
         modifier = Modifier.fillMaxSize()
-            .padding(paddingValues)
+            .padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val tabs = listOf("Все", "Мужчинам", "Женщинам")
         var selectedTabIndex by remember { mutableStateOf(0) }
@@ -75,7 +78,9 @@ fun BottomHomeScreen(
                 selectedTabIndex = indexTab
                 onSelectedTab(indexTab)
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+
         )
     }
 }

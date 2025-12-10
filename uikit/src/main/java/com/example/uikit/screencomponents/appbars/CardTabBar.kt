@@ -19,12 +19,12 @@ fun CardTabBar(
     selectedIndex: Int,
     onSelect: (index: Int) -> Unit,
     modifier: Modifier = Modifier,
-    spaceBetween: Dp = 8.dp
+    spaceBetween: Dp = 16.dp
 ){
     LazyRow(
         modifier = modifier
-            .padding(),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+            .padding(horizontal = 15.dp),
+        horizontalArrangement = Arrangement.spacedBy(spaceBetween),
         verticalAlignment = Alignment.CenterVertically
     ){
         itemsIndexed(options){ index, item ->
