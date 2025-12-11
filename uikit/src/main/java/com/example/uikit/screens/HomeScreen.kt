@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,8 @@ fun HomeScreen(){
 
     var tabIndex by remember { mutableStateOf(0) }
     var indexScreen: Int by remember { mutableStateOf(0) }
+
+
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -68,7 +71,7 @@ fun BottomHomeScreen(
             .padding(paddingValues),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val tabs = listOf("Все", "Мужчинам", "Женщинам")
+        val tabs = listOf("Все", "Мужчинам", "Женщинам", "Детям", "Аксесуары")
         var selectedTabIndex by remember { mutableStateOf(0) }
 
         CardTabBar(
@@ -78,8 +81,8 @@ fun BottomHomeScreen(
                 selectedTabIndex = indexTab
                 onSelectedTab(indexTab)
             },
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
+
 
         )
     }
