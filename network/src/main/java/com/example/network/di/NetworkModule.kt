@@ -22,7 +22,6 @@ val BASE_URL = "http://10.0.2.2:4010/"
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-
     @Provides
     @Singleton
     fun provideOkhttp(dataStore: TokenDataStore): OkHttpClient {
@@ -52,7 +51,6 @@ object NetworkModule {
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .build()
-
     }
 
 
