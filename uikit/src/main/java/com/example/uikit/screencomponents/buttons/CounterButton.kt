@@ -52,7 +52,7 @@ fun CounterButton(
         IconButton(
             onClick = onClickPlus
         ) {
-            //Кнока для минуса товара
+            //Кнока для плюса товара
             Icon(
                 painter = painterResource(R.drawable.iconplus),
                 contentDescription = null,
