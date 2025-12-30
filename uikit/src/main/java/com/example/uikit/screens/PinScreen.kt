@@ -34,7 +34,6 @@ import com.example.uikit.screencomponents.text.TextDescription
 
 
 @Composable
-@Preview(showBackground = true)
 fun PinScreen(
     navController: NavController,
     firstTextScreen: String = "Cоздайте пороль",

@@ -1,19 +1,19 @@
 package navigation
 
-import androidx.compose.animation.SizeTransform
+
+
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
-
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.IntOffset
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import navigation.navgraphsnavigation.authNavGraph
 import navigation.navgraphsnavigation.homeNavGraph
+
+
 
 
 @Composable

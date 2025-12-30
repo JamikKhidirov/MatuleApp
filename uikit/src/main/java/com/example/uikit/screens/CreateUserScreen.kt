@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +45,16 @@ fun CreateUserScreen(
     var date by remember { mutableStateOf("") }
     var gender by remember {mutableStateOf("")}
     var email by remember { mutableStateOf("") }
+
+    var navigate by remember { mutableStateOf(false) }
+
+    LaunchedEffect(navigate) {
+        if (navigate == true){
+            navController.navigate(AuthDestination.CreateUserPasswordScreen)
+            navigate = false
+        }
+    }
+
 
     var isRotation by remember { mutableStateOf(false) }
 
@@ -167,8 +178,9 @@ fun CreateUserScreen(
                             gender = gender,
                             email = email
                         )
+                        navigate = true
                     }
-                    navController.navigate(AuthDestination.CreateUserPasswordScreen)
+
                 }
             )
         }

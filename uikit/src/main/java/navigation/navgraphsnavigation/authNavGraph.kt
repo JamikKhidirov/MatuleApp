@@ -38,7 +38,6 @@ fun NavGraphBuilder.authNavGraph(
         composable<AuthDestination.CreateUserPincodeScreen> {
             PinScreen(
                 navController = navController,
-
                 onPinEntered = { pincode ->
                     navController.navigate(HomeDestination.HomeScreen)
 

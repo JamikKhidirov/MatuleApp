@@ -39,6 +39,7 @@ import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
+import kotlinx.coroutines.delay
 import navigation.AuthDestination
 import navigation.Destination
 import navigation.HomeDestination
@@ -64,6 +65,7 @@ fun LogInScreenScreen(
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess){
             navController.navigate(HomeDestination.HomeScreen)
+            delay(500)
         }
     }
 
