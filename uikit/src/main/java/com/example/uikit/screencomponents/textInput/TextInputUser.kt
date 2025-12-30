@@ -40,6 +40,7 @@ fun TextInputUser(
     onTextValueUser: (String) -> Unit = {},
     placeholder: String? = "example@gmail.com",
     passwordTextInput: Boolean = false,
+    singLine: Boolean = true,
     passwordViz: Boolean = true,
     modifier: Modifier = Modifier,
     isRotation: Boolean = true,
@@ -62,6 +63,7 @@ fun TextInputUser(
     TextField(
         value = value,
         shape = RoundedCornerShape(10.dp),
+        singleLine = singLine,
         modifier = modifier.clip(RoundedCornerShape(10.dp))
             .border(
                 1.dp,
