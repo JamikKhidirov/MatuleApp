@@ -20,6 +20,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,10 +63,20 @@ fun LogInScreenScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
+    var navigate by remember { mutableStateOf(false) }
+
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess){
             navController.navigate(HomeDestination.HomeScreen)
             delay(500)
+        }
+    }
+
+    LaunchedEffect(navigate) {
+        if (navigate) {
+            navController.navigate(AuthDestination.CreateUserScreen)
+            delay(500)
+            navigate = false
         }
     }
 
@@ -106,7 +117,7 @@ fun LogInScreenScreen(
             enableButton = enableButton,
             passwordViz = passwordViz,
             onClickTextRegister = {
-                navController.navigate(AuthDestination.CreateUserScreen)
+                navigate = true
             },
             onClickVizIcon = {
                 passwordViz = !passwordViz

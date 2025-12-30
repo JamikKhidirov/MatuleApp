@@ -25,6 +25,7 @@ import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import navigation.AuthDestination
 import navigation.Destination
@@ -49,8 +50,9 @@ fun CreateUserScreen(
     var navigate by remember { mutableStateOf(false) }
 
     LaunchedEffect(navigate) {
-        if (navigate == true){
+        if (navigate){
             navController.navigate(AuthDestination.CreateUserPasswordScreen)
+            delay(500)
             navigate = false
         }
     }
