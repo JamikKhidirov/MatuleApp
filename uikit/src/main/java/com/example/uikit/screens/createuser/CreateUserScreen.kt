@@ -1,4 +1,4 @@
-package com.example.uikit.screens
+package com.example.uikit.screens.createuser
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -28,8 +27,6 @@ import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import navigation.AuthDestination
-import navigation.Destination
-import retrofit2.Response
 import viewmodal.CreateUserViewModel
 
 

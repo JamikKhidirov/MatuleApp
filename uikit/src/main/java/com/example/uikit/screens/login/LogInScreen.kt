@@ -1,4 +1,4 @@
-package com.example.uikit.screens
+package com.example.uikit.screens.login
 
 
 import androidx.compose.foundation.background
@@ -22,7 +22,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
@@ -47,7 +45,6 @@ import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
 import kotlinx.coroutines.delay
 import navigation.AuthDestination
-import navigation.Destination
 import navigation.HomeDestination
 import viewmodal.LogInViewModel
 import viewmodal.states.UiEvent
