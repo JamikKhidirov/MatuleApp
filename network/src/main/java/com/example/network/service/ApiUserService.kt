@@ -3,6 +3,7 @@ package com.example.network.service
 import com.example.network.data.userdata.RequestAuth
 import com.example.network.data.userdata.RequestRegister
 import com.example.network.data.userdata.ResponseAuth
+import com.example.network.data.userdata.ResponseAuthMock
 import com.example.network.data.userdata.ResponseRegister
 import com.example.network.data.userdata.User
 import com.example.network.data.userdata.UsersAuth
@@ -47,7 +48,7 @@ interface ApiUserService {
 
     //Авторизация пользователя/Вход в свой аккаунт
     @POST("collections/users/auth-with-password")
-    suspend fun logInUser(@Body requestAuth: RequestAuth): Response<ResponseAuth>
+    suspend fun logInUser(@Body requestAuth: RequestAuth): Response<ResponseAuthMock>
 
 
 

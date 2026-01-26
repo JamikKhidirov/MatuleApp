@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -30,8 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.rememberNavController
 import com.example.uikit.R
 import com.example.uikit.screencomponents.buttons.ButtonScreens
 import com.example.uikit.screencomponents.buttons.OutLineButtonScreens
@@ -44,31 +49,38 @@ import kotlinx.coroutines.delay
 import navigation.AuthDestination
 import navigation.Destination
 import navigation.HomeDestination
-import viewmodal.LogInViewModal
+import viewmodal.LogInViewModel
 import viewmodal.states.UiEvent
 
 
 @Composable
 fun LogInScreenScreen(
-    viewModal: LogInViewModal = hiltViewModel(),
+    viewModal: LogInViewModel = hiltViewModel(),
     navController: NavController
-){
-
+) {
     var isRotation by remember { mutableStateOf(false) }
     var passwordViz by remember { mutableStateOf(false) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    val state = viewModal.uiState
+    // ИСПРАВЛЕНО: Используем collectAsStateWithLifecycle для сбора StateFlow
+    val state by viewModal.uiState.collectAsStateWithLifecycle()
 
     val snackbarHostState = remember { SnackbarHostState() }
 
     var navigate by remember { mutableStateOf(false) }
 
+    // Навигация при успешном входе
     LaunchedEffect(state.isSuccess) {
-        if (state.isSuccess){
-            navController.navigate(HomeDestination.HomeScreen)
-            delay(500)
+        if (state.isSuccess) {
+            // Небольшая задержка для отображения успеха
+            delay(300)
+            navController.navigate(HomeDestination.HomeScreen) {
+                // Очищаем стек навигации
+                popUpTo(navController.graph.findStartDestination().id) {
+                    inclusive = true
+                }
+            }
         }
     }
 
@@ -80,25 +92,24 @@ fun LogInScreenScreen(
         }
     }
 
-
-    // ловим ошибки
-    LaunchedEffect(viewModal.events) {
+    // Ловим ошибки из ViewModel
+    LaunchedEffect(Unit) {
         viewModal.events.collect { event ->
             when(event) {
                 is UiEvent.ShowSnackbar -> {
                     snackbarHostState.showSnackbar(
                         message = event.message,
-                        actionLabel = "OK"
+                        actionLabel = "OK",
+                        duration = SnackbarDuration.Short
                     )
                 }
             }
         }
     }
 
-
-    val enableButton by remember(email, password) {
+    val enableButton by remember(email, password, state.isLoading) {
         derivedStateOf {
-            email.isNotEmpty() && password.isNotEmpty()
+            email.isNotEmpty() && password.isNotEmpty() && !state.isLoading
         }
     }
 
@@ -106,9 +117,18 @@ fun LogInScreenScreen(
         modifier = Modifier.fillMaxSize()
             .background(Color.White),
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState)
+            SnackbarHost(hostState = snackbarHostState) { snackbarData ->
+                Snackbar(
+                    snackbarData = snackbarData,
+                    modifier = Modifier.padding(16.dp),
+                    containerColor = Color(0xFFD32F2F),
+                    contentColor = Color.White
+                )
+            }
         }
-    ) {paddingValues ->
+    ) { paddingValues ->
+        // Убираем проверку isSuccess из onClickLogInButton
+        // так как навигация теперь в LaunchedEffect
         LogInScreenBottom(
             paddingValues = paddingValues,
             email = email,
@@ -122,28 +142,21 @@ fun LogInScreenScreen(
             onClickVizIcon = {
                 passwordViz = !passwordViz
             },
-            onClickVkLog = {
-
-            },
+            onClickVkLog = { },
             onClickLogInButton = {
                 viewModal.logIn(email = email, password = password)
-                if (state.isSuccess){
-                    navController.navigate(HomeDestination.HomeScreen)
-                }
+                // УБРАНО: if (state.isSuccess) - навигация теперь в LaunchedEffect
             },
-            onClickYndexLogIn = {
-
-            },
-            onTextEmailUser = {EmailText ->
+            onClickYndexLogIn = { },
+            onTextEmailUser = { EmailText ->
                 email = EmailText
             },
-            onTextPasswordUser = { passswordText ->
-                password = passswordText
+            onTextPasswordUser = { passwordText ->
+                password = passwordText
             }
         )
     }
 }
-
 
 
 @Composable
@@ -272,4 +285,14 @@ fun LogInScreenBottom(
 
         }
     }
+}
+
+
+
+@Composable
+@Preview(showBackground = true)
+fun LogInScreenPreview(){
+    LogInScreenScreen(
+        navController = rememberNavController()
+    )
 }

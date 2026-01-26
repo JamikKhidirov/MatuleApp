@@ -31,40 +31,40 @@ fun AppNavGraph(
         startDestination = startDestination,
         enterTransition = {
             slideInHorizontally(
-                tween(400),
+                tween(800),
                 initialOffsetX =  {
                     it
                 }
             ) + fadeIn(
                 animationSpec = tween(
-                    400
+                    800
                 )
             )
         },
         exitTransition = {
             slideOutHorizontally(
-                tween(400),
+                tween(800),
                 targetOffsetX = {
                     -it
                 }
             ) + fadeOut(
-                animationSpec = tween(400)
+                animationSpec = tween(800)
             )
         },
 
         popEnterTransition = {
             slideInHorizontally(
                 initialOffsetX = { fullWidth -> -fullWidth }, // начинается слева за экраном
-                animationSpec = tween(400)
-            ) + fadeIn(animationSpec = tween(400))
+                animationSpec = tween(800)
+            ) + fadeIn(animationSpec = tween(800))
         },
 
         popExitTransition = {
             // Закрытие текущего экрана при возврате
             slideOutHorizontally(
                 targetOffsetX = { fullWidth -> fullWidth }, // уходит вправо
-                animationSpec = tween(400)
-            ) + fadeOut(animationSpec = tween(400))
+                animationSpec = tween(800)
+            ) + fadeOut(animationSpec = tween(800))
         }
 
     ){
