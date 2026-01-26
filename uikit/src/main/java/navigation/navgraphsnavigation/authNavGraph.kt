@@ -1,16 +1,14 @@
 package navigation.navgraphsnavigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.uikit.screens.CreateUserPassword
-import com.example.uikit.screens.CreateUserScreen
-import com.example.uikit.screens.LogInScreenScreen
-import com.example.uikit.screens.PinScreen
+import com.example.uikit.screens.createuser.CreateUserPassword
+import com.example.uikit.screens.createuser.CreateUserScreen
+import com.example.uikit.screens.login.LogInScreenScreen
+import com.example.uikit.screens.pincode.PinScreen
 import navigation.AuthDestination
-import navigation.Destination
 import navigation.HomeDestination
 
 
