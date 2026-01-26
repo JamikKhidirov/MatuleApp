@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.uikit.screens.profile.uicomponents.topBarProfileScreen
 
 
 @Composable
@@ -47,11 +48,20 @@ fun BottomProfileScreen(
     Column(
         modifier = Modifier.fillMaxSize()
             .padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
+
+        topBarProfileScreen(
+            modifier = Modifier
+                .padding(top = 32.dp)
+                .padding(start = 20.dp)
+        )
+
+
         Column(
             modifier = Modifier
-                .padding(top = 80.dp),
+                .padding(top = 80.dp)
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
