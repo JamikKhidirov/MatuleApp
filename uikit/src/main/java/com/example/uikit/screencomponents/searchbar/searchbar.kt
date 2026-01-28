@@ -30,7 +30,6 @@ fun searchbar(
     modifier: Modifier = Modifier,
     onClickIxSerch: () -> Unit = {},
     onSearchInfo: (String) -> Unit = {},
-    onValueChange: (String) -> Unit = {}
 ){
 
     var text = remember { mutableStateOf(value) }
@@ -45,7 +44,6 @@ fun searchbar(
         value = text.value,
         onValueChange = {newString ->
             text.value = newString
-            onValueChange(newString)
         },
         modifier = Modifier
             .border(
