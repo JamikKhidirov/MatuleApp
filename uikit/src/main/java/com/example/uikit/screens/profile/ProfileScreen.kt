@@ -49,7 +49,7 @@ fun ProfileScreen(){
             },
             check = chechSwitch,
             onChackedChange = { switchState ->
-                 chechSwitch = !switchState
+                 chechSwitch = !    switchState
             }
         )
     }
