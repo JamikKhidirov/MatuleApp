@@ -52,6 +52,7 @@ dependencies {
     implementation(project(":network"))
     kapt("com.google.dagger:hilt-android-compiler:2.57.2")
     implementation("com.google.dagger:hilt-android:2.57.2")
+    implementation("androidx.core:core-splashscreen:1.2.0")
     implementation(project(":uikit"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
