@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,10 +23,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 @Preview(showBackground = true)
-fun CastomCheckBox(
+fun CastomSwitch(
     modifier: Modifier = Modifier,
     check: Boolean = false,
-    onCheckedChange: (Boolean) -> Unit = {}
+    onCheckedChange: (Boolean) -> Unit = {},
+    scale: Float = 1f,
 ){
     var check by remember { mutableStateOf(check) }
 
@@ -35,7 +37,7 @@ fun CastomCheckBox(
             check = valueCheck
             onCheckedChange(valueCheck)
         },
-        modifier = modifier,
+        modifier = modifier.scale(scale),
         colors = SwitchDefaults.colors(
             checkedBorderColor = Color.Transparent,
             uncheckedBorderColor = Color.Transparent,
