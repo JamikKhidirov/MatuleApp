@@ -94,7 +94,7 @@ fun BottomProfileScreen(
             swithch = {
                 CastomSwitch(
                     modifier = Modifier
-                        .padding(start = 60.dp)
+                        .padding(start = 70.dp)
                         .size(width = 48.dp, height = 28.dp),
                     check = check,
                     onCheckedChange = onChackedChange,
