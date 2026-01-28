@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
-val BASE_URL = "http://10.0.2.2:4010/"
+val BASE_URL = "http://64.188.89.182:4010/"
 
 
 
@@ -26,6 +26,9 @@ object NetworkModule {
     @Singleton
     fun provideOkhttp(dataStore: TokenDataStore): OkHttpClient {
         return OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val originalRequest = chain.request()
 
