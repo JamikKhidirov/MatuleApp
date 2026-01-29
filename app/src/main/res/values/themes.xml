@@ -10,11 +10,15 @@
 
 
     <style name="Theme.Matule.ScplashScreen" parent="Theme.SplashScreen">
+
+        <item name="isMaterialTheme">false</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transparent</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
-
         <item name="postSplashScreenTheme">@style/Theme.Matule</item>
         <item name="windowActionBar">false</item>
         <item name="windowSplashScreenBackground">#2074F2</item>
+        <item name="windowSplashScreenAnimationDuration">400</item>
+
     </style>
 </resources>
