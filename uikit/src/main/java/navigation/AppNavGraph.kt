@@ -2,6 +2,8 @@ package navigation
 
 
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -10,6 +12,8 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.uikit.screens.splash.SplashScreen
 import navigation.navgraphsnavigation.authNavGraph
 import navigation.navgraphsnavigation.homeNavGraph
 
@@ -21,14 +25,10 @@ fun AppNavGraph(
     isLogInUser: Boolean,
     navController: NavHostController
 ){
-    var startDestination = when(isLogInUser){
-        true -> HomeDestination.getHomeRoom()
-        else -> AuthDestination.getStartRoute()
-    }
 
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = SplashScreenDestination,
         enterTransition = {
             slideInHorizontally(
                 tween(800),
@@ -68,6 +68,20 @@ fun AppNavGraph(
         }
 
     ){
+
+        // Сплеш без анимаций
+        composable<SplashScreenDestination>(
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None },
+            popEnterTransition = { EnterTransition.None },
+            popExitTransition = { ExitTransition.None }
+        ) {
+            SplashScreen(
+                isLogInUser = isLogInUser,
+                navController = navController
+            )
+
+        }
         authNavGraph(navController)
         homeNavGraph(navHostController = navController)
     }

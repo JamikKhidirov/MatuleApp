@@ -12,6 +12,7 @@
     <style name="Theme.Matule.ScplashScreen" parent="Theme.SplashScreen">
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splashicon</item>
 
         <item name="postSplashScreenTheme">@style/Theme.Matule</item>
         <item name="windowActionBar">false</item>
