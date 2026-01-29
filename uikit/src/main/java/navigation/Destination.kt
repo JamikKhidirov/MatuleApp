@@ -70,6 +70,11 @@ sealed interface HomeDestination: Destination {
 }
 
 
+@Serializable
+object SplashScreenDestination: Destination
+
+@Serializable
+object SplashScreenDestinationRoot: Destination
 
 
 /**

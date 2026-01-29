@@ -1,5 +1,6 @@
 package com.example.uikit.screens.profile.uicomponents
 
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.ViewCompat
 import com.example.uikit.R
 
 
@@ -44,7 +46,8 @@ fun vidjetProfileScreen(
             .clickable(
                 interactionSource = incrementSouurse,
                 enabled = if (swithch == null) true else false,
-                onClick = onClick
+                onClick = onClick,
+                indication = null,
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
