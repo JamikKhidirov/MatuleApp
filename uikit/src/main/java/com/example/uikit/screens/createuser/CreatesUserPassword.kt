@@ -36,7 +36,7 @@ import viewmodal.CreateUserViewModel
 @Composable
 fun CreateUserPassword(
     navController: NavController,
-    viewModel: CreateUserViewModel = hiltViewModel()
+    viewModel: CreateUserViewModel
 ) {
     val coroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }

@@ -1,5 +1,7 @@
 package navigation.navgraphsnavigation
 
+import androidx.compose.runtime.remember
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -10,6 +12,7 @@ import com.example.uikit.screens.login.LogInScreenScreen
 import com.example.uikit.screens.pincode.PinScreen
 import navigation.AuthDestination
 import navigation.HomeDestination
+import viewmodal.CreateUserViewModel
 
 
 fun NavGraphBuilder.authNavGraph(
@@ -17,20 +20,44 @@ fun NavGraphBuilder.authNavGraph(
 ){
 
     navigation<AuthDestination.AuthRoot>(startDestination = AuthDestination.LoginScreen){
-        composable<AuthDestination.LoginScreen> {
+
+        composable<AuthDestination.LoginScreen> {backStackEntry ->
+
+            val parentEntry = remember(backStackEntry) {
+                navController.getBackStackEntry(AuthDestination.AuthRoot)
+            }
+            val viewModel: CreateUserViewModel = hiltViewModel(parentEntry)
+
             LogInScreenScreen(
-                navController = navController
-            )
-        }
-        composable<AuthDestination.CreateUserScreen>{
-            CreateUserScreen(
                 navController = navController,
             )
         }
+        composable<AuthDestination.CreateUserScreen>{backStackEntry ->
+
+            val parentEntry = remember(backStackEntry) {
+                navController.getBackStackEntry(AuthDestination.AuthRoot)
+            }
+
+            val viewModel: CreateUserViewModel = hiltViewModel(parentEntry)
+
+            CreateUserScreen(
+                navController = navController,
+                viewModel = viewModel
+            )
+        }
 
 
-        composable<AuthDestination.CreateUserPasswordScreen> {
-            CreateUserPassword(navController)
+        composable<AuthDestination.CreateUserPasswordScreen> {backStackEntry ->
+
+            val parentEntry = remember(backStackEntry) {
+                navController.getBackStackEntry(AuthDestination.AuthRoot)
+            }
+            val viewModel: CreateUserViewModel = hiltViewModel(parentEntry)
+
+            CreateUserPassword(
+                navController,
+                viewModel = viewModel
+            )
         }
 
         composable<AuthDestination.CreateUserPincodeScreen> {

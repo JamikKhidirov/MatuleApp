@@ -35,7 +35,7 @@ import viewmodal.CreateUserViewModel
 @SuppressLint("RememberReturnType")
 @Composable
 fun CreateUserScreen(
-    viewModel: CreateUserViewModel = hiltViewModel(),
+    viewModel: CreateUserViewModel,
     navController: NavController
 ){
 

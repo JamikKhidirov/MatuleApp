@@ -118,15 +118,19 @@ class CreateUserViewModel @Inject constructor(
         }
     }
 
+    private fun String.toPart() =
+        this.toRequestBody("text/plain".toMediaTypeOrNull())
+
+
     private suspend fun updateUser(userId: String): Response<User> {
         Log.d(TAG, "Отправка данных для обновления пользователя $userId")
 
         val params = mapOf(
-            "firstname" to firstName.toRequestBody(),
-            "secondname" to secondName.toRequestBody(),
-            "lastname" to lastName.toRequestBody(),
-            "datebirthday" to datebirthday.toRequestBody(),
-            "gender" to gender.toRequestBody()
+            "firstname" to firstName.toPart(),
+            "secondname" to secondName.toPart(),
+            "lastname" to lastName.toPart(),
+            "datebirthday" to datebirthday.toPart(),
+            "gender" to gender.toPart()
         )
 
         return userApi.updateUser(userId, params)
