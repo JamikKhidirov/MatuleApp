@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,33 +47,38 @@ fun BottomCatalogScreen(
     var selectedTabIndex by remember { mutableStateOf(0) }
 
 
-    Column(
-        modifier = Modifier.padding(paddingValues)
-    ) {
-        TopAppBarCatalog(
-            modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 20.dp),
-            onClickIxSerch = {
-                //Иконка очистки текста
-            },
-            onSearchInfo = {textSearch ->
-                //Поиск в бд
-            },
-            onClickIconProfile = {
-                //Навигация на экран профиля
-            }
-        )
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues)
+    ){
 
-        CardTabBar(
-            options = tabs,
-            selectedIndex = selectedTabIndex,
-            onSelect = { indexTab ->
-                selectedTabIndex = indexTab
-                onSelectedTab(indexTab)
-            },
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = 32.dp)
-        )
+       item {
+           TopAppBarCatalog(
+               modifier = Modifier.fillMaxWidth()
+                   .padding(horizontal = 20.dp),
+               onClickIxSerch = {
+                   //Иконка очистки текста
+               },
+               onSearchInfo = {textSearch ->
+                   //Поиск в бд
+               },
+               onClickIconProfile = {
+                   //Навигация на экран профиля
+               }
+           )
+       }
 
+       item {
+           CardTabBar(
+               options = tabs,
+               selectedIndex = selectedTabIndex,
+               onSelect = { indexTab ->
+                   selectedTabIndex = indexTab
+                   onSelectedTab(indexTab)
+               },
+               modifier = Modifier.fillMaxWidth()
+                   .padding(top = 32.dp)
+           )
+       }
     }
 }
