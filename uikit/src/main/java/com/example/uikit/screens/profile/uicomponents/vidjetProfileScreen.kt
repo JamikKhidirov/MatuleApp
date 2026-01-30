@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.ViewCompat
 import com.example.uikit.R
 
 
@@ -46,7 +47,7 @@ fun vidjetProfileScreen(
                 interactionSource = incrementSouurse,
                 enabled = if (swithch == null) true else false,
                 onClick = onClick,
-                indication = indicatorClick
+                indication = null,
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -68,9 +69,4 @@ fun vidjetProfileScreen(
 
         swithch?.invoke()
     }
-}
-
-
-object indicatorClick: Indication{
-
 }
