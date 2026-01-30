@@ -2,6 +2,7 @@ package com.example.uikit.screencomponents.appbars
 
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -48,7 +49,8 @@ fun CardTabBar(
         state = listState,
         modifier = modifier.onGloballyPositioned { parentWidth = it.size.width },
         horizontalArrangement = Arrangement.spacedBy(spaceBetween),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        contentPadding = PaddingValues(start = 20.dp)
     ) {
         itemsIndexed(options) { index, item ->
             CastomCardTab(

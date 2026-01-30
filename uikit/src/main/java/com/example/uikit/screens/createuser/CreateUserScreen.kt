@@ -1,6 +1,7 @@
 package com.example.uikit.screens.createuser
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -76,6 +78,7 @@ fun CreateUserScreen(
 
     Column(
         modifier = Modifier.fillMaxSize()
+            .background(Color.White)
             .padding(horizontal = 20.dp)
             .statusBarsPadding(),
     ) {

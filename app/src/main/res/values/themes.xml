@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Matule" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Matule" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Полное отключение ActionBar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Theme.Matule.ScplashScreen" parent="Theme.SplashScreen">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splashicon</item>
+
+        <item name="postSplashScreenTheme">@style/Theme.Matule</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowSplashScreenBackground">#2074F2</item>
+    </style>
 </resources>

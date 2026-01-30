@@ -10,10 +10,15 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.uikit.screencomponents.appbars.CardTabBar
 import com.example.uikit.screens.catalog.uikomponents.TopAppBarCatalog
 
 
@@ -34,8 +39,13 @@ fun CatalogScreen(){
 
 @Composable
 fun BottomCatalogScreen(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onSelectedTab : (tab: Int) -> Unit = {}
 ){
+    val tabs = listOf("Все", "Мужчинам", "Женщинам", "Детям", "Аксесуары")
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
+
     Column(
         modifier = Modifier.padding(paddingValues)
     ) {
@@ -52,5 +62,17 @@ fun BottomCatalogScreen(
                 //Навигация на экран профиля
             }
         )
+
+        CardTabBar(
+            options = tabs,
+            selectedIndex = selectedTabIndex,
+            onSelect = { indexTab ->
+                selectedTabIndex = indexTab
+                onSelectedTab(indexTab)
+            },
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = 32.dp)
+        )
+
     }
 }
