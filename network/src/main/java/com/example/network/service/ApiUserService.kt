@@ -54,6 +54,7 @@ interface ApiUserService {
 
     //Получение ID токена пользователя
     @GET("collections/_authOrigins/records")
+    //Нужен Header токен
     suspend fun getUserIdToken(): UsersAuth
 
 

@@ -23,7 +23,7 @@ interface ApiProjectService {
     @POST("collections/project/records")
     suspend fun createProject(
         //Принимает данные в RequestProject
-        @PartMap parts: Map<String, RequestBody>
+        @PartMap parts: Map<String, @JvmSuppressWildcards RequestBody>
     ): Response<Project>
 
 
