@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
-val BASE_URL = "http://64.188.89.182:4010/"
+val BASE_URL = "http://64.188.89.182:4010/api/"
 
 
 
@@ -48,7 +48,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun retrofirCreate(okHttpClient: OkHttpClient): Retrofit{
+    fun retrofirCreate(okHttpClient: OkHttpClient): Retrofit {
          return Retrofit.Builder()
              .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)
