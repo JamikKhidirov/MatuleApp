@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.uikit.screencomponents.appbars.CardTabBar
 import com.example.uikit.screencomponents.appbars.bottomNavigationBars
+import com.example.uikit.screencomponents.searchbar.searchbar
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screens.home.uicomponents.CatalogItemTitile
 
@@ -75,9 +76,18 @@ fun BottomHomeScreen(
         modifier = Modifier.fillMaxSize()
             .padding(paddingValues)
     ) {
+
+
+        item {
+            searchbar(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(20.dp)
+            ) {  }
+        }
+
         
         CatalogItemTitile(
-            modifier = Modifier.padding(start = 20.dp)
+            modifier = Modifier.padding(start = 20  .dp)
         )
 
         item {
