@@ -85,6 +85,15 @@ fun BottomHomeScreen(
             ) {  }
         }
 
+
+        CatalogItemTitile(
+            text = "Акции и новости",
+            modifier = Modifier.padding(start = 20.dp)
+        )
+
+        item {
+            //Сюда список новостей
+        }
         
         CatalogItemTitile(
             modifier = Modifier.padding(start = 20  .dp)
