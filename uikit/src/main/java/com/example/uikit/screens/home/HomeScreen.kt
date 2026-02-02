@@ -99,7 +99,9 @@ fun BottomHomeScreen(
 
         CatalogItemTitile(
             text = "Акции и новости",
-            modifier = Modifier.padding(start = 20.dp)
+            modifier = Modifier.padding(
+                start = 20.dp,
+                top = 30.dp)
         )
 
         item {
