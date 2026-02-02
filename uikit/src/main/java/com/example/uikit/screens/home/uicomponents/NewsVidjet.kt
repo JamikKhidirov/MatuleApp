@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Async
 
 @Composable
 fun NewsVidjet(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     backgroundBrush: Brush,
     price: String,
     news: News

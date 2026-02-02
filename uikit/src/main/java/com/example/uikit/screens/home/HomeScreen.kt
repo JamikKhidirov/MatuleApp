@@ -1,6 +1,7 @@
 package com.example.uikit.screens.home
 
 
+import androidx.compose.animation.core.withInfiniteAnimationFrameMillis
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,6 +29,8 @@ import com.example.uikit.screencomponents.appbars.bottomNavigationBars
 import com.example.uikit.screencomponents.searchbar.searchbar
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screens.home.uicomponents.CatalogItemTitile
+import com.example.uikit.screens.home.uicomponents.NewsRow
+import com.example.uikit.screens.home.uicomponents.NewsVidjet
 
 
 @Composable
@@ -96,12 +100,23 @@ fun BottomHomeScreen(
         )
 
         item {
-            //Сюда список новостей
-
+            var colorBrush = listOf(
+                Color(0xFF97D9F0),
+                Color(0xFF92E9D4)
+            )
+            NewsRow(
+                newsList = list,
+                modifier = Modifier
+                    .padding(top = 16.dp),
+                backGroundColorBrush = Brush.linearGradient(
+                    colors = colorBrush
+                )
+            )
         }
+
         
         CatalogItemTitile(
-            modifier = Modifier.padding(start = 20  .dp)
+            modifier = Modifier.padding(start = 20.dp)
         )
 
         item {
@@ -113,11 +128,18 @@ fun BottomHomeScreen(
                     onSelectedTab(indexTab)
                 },
                 modifier = Modifier.fillMaxWidth()
-                    .padding(top = 5.dp)
+                    .padding(top = 15.dp)
             )
         }
 
+
+        item {
+            //Здесь список каталогов и описаний тоесть товаров
+            //Лучше сделать через items
+        }
+
     }
+
 
 }
 
