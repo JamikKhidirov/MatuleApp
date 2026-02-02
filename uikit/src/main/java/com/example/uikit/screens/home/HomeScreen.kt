@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.network.data.shopdata.News
 import com.example.uikit.screencomponents.appbars.CardTabBar
 import com.example.uikit.screencomponents.appbars.bottomNavigationBars
 import com.example.uikit.screencomponents.searchbar.searchbar
@@ -29,7 +30,6 @@ import com.example.uikit.screens.home.uicomponents.CatalogItemTitile
 
 
 @Composable
-@Preview(showBackground = true)
 fun HomeScreen(){
 
 
@@ -58,7 +58,10 @@ fun HomeScreen(){
             paddingValues = paddingValues,
             onSelectedTab = { selectTabIndex ->
                 tabIndex = selectTabIndex
-            }
+            },
+            list = listOf(
+
+            )
         )
     }
 }
@@ -66,7 +69,8 @@ fun HomeScreen(){
 @Composable
 fun BottomHomeScreen(
     paddingValues: PaddingValues,
-    onSelectedTab: (index: Int) -> Unit
+    onSelectedTab: (index: Int) -> Unit,
+    list: List<News>
 ){
 
     val tabs = listOf("Все", "Мужчинам", "Женщинам", "Детям", "Аксесуары")
@@ -93,6 +97,7 @@ fun BottomHomeScreen(
 
         item {
             //Сюда список новостей
+
         }
         
         CatalogItemTitile(
@@ -114,4 +119,11 @@ fun BottomHomeScreen(
 
     }
 
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview(){
+    HomeScreen()
 }
