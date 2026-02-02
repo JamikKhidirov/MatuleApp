@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Scaffold
@@ -43,7 +44,8 @@ fun HomeScreen(){
 
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .statusBarsPadding(),
         bottomBar = {
            Column {
                Divider(
@@ -89,7 +91,8 @@ fun BottomHomeScreen(
         item {
             searchbar(
                 modifier = Modifier.fillMaxWidth()
-                    .padding(20.dp)
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 24.dp)
             ) {  }
         }
 
