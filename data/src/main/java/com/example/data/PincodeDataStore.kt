@@ -17,14 +17,14 @@ import javax.inject.Singleton
 
 
 
-private val Context.dataStore by preferencesDataStore("pincode")
+
 
 @Singleton
 class PincodeDataStore @Inject constructor(
     @ApplicationContext context: Context
 ) {
 
-
+    private val Context.dataStore by preferencesDataStore("pincode")
 
     companion object {
         val CODE_KAY = stringPreferencesKey("pincode")
