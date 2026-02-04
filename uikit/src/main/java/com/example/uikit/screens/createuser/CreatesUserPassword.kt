@@ -157,7 +157,7 @@ fun CreateUserPassword(
                                     snackbarHostState.showSnackbar(
                                         message = "Регистрация успешна"
                                     )
-                                    navController.navigate(AuthDestination.CreateUserPincodeScreen)
+                                    navController.navigate(AuthDestination.LoginScreen)
                                 }
                             }
                         }

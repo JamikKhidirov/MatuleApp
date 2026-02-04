@@ -25,34 +25,31 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.uikit.screencomponents.buttons.PinDigitButton
 import com.example.uikit.screencomponents.indicators.PinIndicator
 import com.example.uikit.screencomponents.text.TextDescription
+import com.example.uikit.screens.pincode.viewModel.PincodeScreenViewModel
 
 
 @Composable
 @Preview(showBackground = true)
 fun PinScreen(
+    viewmodel: PincodeScreenViewModel = hiltViewModel(),
     navController: NavController = rememberNavController(),
     firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
 ) {
 
     val pinLength = 4
-    var enteredPin by remember { mutableStateOf("") }
+    var enteredPin = viewmodel.enteredPin.collectAsStateWithLifecycle()
 
-    fun onNumberClick(d: String) {
-        if (enteredPin.length < pinLength) {
-            enteredPin += d
-            if (enteredPin.length == pinLength) onPinEntered(enteredPin)
-        }
-    }
 
-    fun onDelete() {
-        if (enteredPin.isNotEmpty()) enteredPin = enteredPin.dropLast(1)
-    }
+
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -88,7 +85,7 @@ fun PinScreen(
 
                 PinIndicator(
                     pinLength = pinLength,
-                    enteredLength = enteredPin.length,
+                    enteredLength = enteredPin.value.length,
                     modifier = Modifier.padding(top = 56.dp)
                 )
             }
@@ -107,7 +104,13 @@ fun PinScreen(
                     ) {
                         for (col in 1..3) {
                             val digit = (row * 3 + col).toString()
-                            PinDigitButton(digit, onClick = ::onNumberClick, content = null)
+                            PinDigitButton(digit, content = null,  onClick = { value ->
+                                viewmodel.onNumberClick(
+                                    d = value,
+                                    pinLength = pinLength,
+                                    onPinEntered = onPinEntered
+                                )
+                            })
                         }
                     }
                 }
@@ -119,12 +122,20 @@ fun PinScreen(
                 ) {
                     Spacer(modifier = Modifier.size(80.dp))
 
-                    PinDigitButton("0", onClick = ::onNumberClick, content = null)
+                    PinDigitButton("0",content = null,  onClick = {value ->
+                        viewmodel.onNumberClick(
+                            d = value,
+                            pinLength = pinLength,
+                            onPinEntered = onPinEntered
+                        )
+                    })
 
                     PinDigitButton(
                         digit = "delete",
                         isArrayBack = true,
-                        onClick = { onDelete() },
+                        onClick = {
+                            viewmodel.onDelete()
+                        },
                         content = {
                             Icon(
                                 painter = painterResource(R.drawable.deleteicon),
