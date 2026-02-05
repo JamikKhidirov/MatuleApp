@@ -4,6 +4,7 @@ import androidx.compose.ui.draw.InnerShadowScope
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.PincodeDataStore
+import com.example.domain.PinCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PincodeScreenViewModel @Inject constructor(
-    private val pincodeDataStore: PincodeDataStore
+    private val pincodeDataStore: PinCodeRepository
 ) : ViewModel() {
 
 

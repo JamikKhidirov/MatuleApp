@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.TokenDataStore
+import com.example.domain.AuthRepository
 import com.example.network.data.userdata.RequestAuth
 import com.example.network.service.ApiUserService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LogInViewModel @Inject constructor(
     private val api: ApiUserService,
-    private val tokenDataStore: TokenDataStore
+    private val tokenDataStore: AuthRepository
 ) : ViewModel() {
 
     // Используем MutableStateFlow для Compose
@@ -53,7 +54,7 @@ class LogInViewModel @Inject constructor(
                         Log.d("network", body.toString())
 
                         // Сохраняем токен
-                        tokenDataStore.saveToken(body.token)
+                        tokenDataStore.saveAuthToken(body.token)
 
                         // Устанавливаем успех
                         _uiState.value = _uiState.value.copy(

@@ -48,6 +48,7 @@ android {
 
 dependencies {
     implementation(project(":data"))
+    implementation(project(":domain"))
     implementation(project(":network"))
     kapt("com.google.dagger:hilt-compiler:2.57.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
