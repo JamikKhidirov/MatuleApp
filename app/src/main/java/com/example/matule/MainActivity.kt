@@ -10,12 +10,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
+import com.example.domain.AuthRepository
 import dagger.hilt.android.AndroidEntryPoint
 import navigation.AppNavGraph
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var authDataStore: AuthRepository
 
 
     val launcher = registerForActivityResult(
@@ -44,6 +49,9 @@ class MainActivity : ComponentActivity() {
         launcher.launch(
             Manifest.permission.CAMERA
         )
+
+
+
 
 
         setContent {
