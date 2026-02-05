@@ -5,5 +5,5 @@ interface DataStoreRepository {
 
     suspend fun saveData(data: String)
 
-    suspend fun cleatDataDataStore()
+    suspend fun clearDataDataStore()
 }

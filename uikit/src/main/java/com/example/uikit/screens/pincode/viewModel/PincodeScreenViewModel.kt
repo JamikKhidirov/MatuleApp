@@ -32,7 +32,7 @@ class PincodeScreenViewModel @Inject constructor(
             if (enteredPin.value.length == pinLength) {
                 onPinEntered(enteredPin.value)
                 viewModelScope.launch {
-                    pincodeDataStore.saveToken(enteredPin.value)
+                    pincodeDataStore.saveData(data = enteredPin.value)
                 }
             }
         }

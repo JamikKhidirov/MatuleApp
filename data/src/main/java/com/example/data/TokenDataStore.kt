@@ -56,7 +56,7 @@ class TokenDataStore @Inject constructor(
         }
     }
 
-    override suspend fun cleatDataDataStore() {
+    override suspend fun clearDataDataStore() {
         context.dataStore.edit { preferences ->
             preferences.remove(TOKEN_KEY)
         }

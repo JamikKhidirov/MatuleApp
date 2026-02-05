@@ -48,10 +48,11 @@ class PincodeDataStore @Inject constructor(
         }
     }
 
-    override suspend fun cleatDataDataStore() {
+    override suspend fun clearDataDataStore() {
         _dataStore.edit { preferences ->
             preferences.remove(CODE_KAY)
         }
     }
+
 }
 
