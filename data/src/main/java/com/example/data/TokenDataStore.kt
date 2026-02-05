@@ -8,6 +8,7 @@ import com.example.domain.AuthRepository
 import com.example.domain.PinCodeRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -28,6 +29,8 @@ class TokenDataStore @Inject constructor(
     val tokenFlow: Flow<String?> = context.dataStore.data
         .map { preferences ->
             preferences[TOKEN_KEY]
+        }.catch{
+            emit(null)
         }
 
     val idTokenFlow: Flow<String?> = context.dataStore.data
@@ -36,18 +39,22 @@ class TokenDataStore @Inject constructor(
         }
 
     override suspend fun saveAuthToken(token: String) {
-        TODO("Not yet implemented")
+        context.dataStore.edit { preferences ->
+            preferences[TOKEN_KEY] = token
+        }
     }
 
 
-    suspend fun saveIdToken(id: String) {
+   override suspend fun saveIdToken(id: String) {
         context.dataStore.edit {  preferences ->
             preferences[ID_TOKEN] = id
         }
     }
 
     override suspend fun clearAuthTokens() {
-        TODO("Not yet implemented")
+        context.dataStore.edit {preferences ->
+            preferences.remove(TOKEN_KEY)
+        }
     }
 
 
@@ -57,17 +64,7 @@ class TokenDataStore @Inject constructor(
         }
     }
 
-    override suspend fun saveData(data: String) {
-        context.dataStore.edit { preferences ->
-            preferences[TOKEN_KEY] = data
-        }
-    }
 
-    override suspend fun clearDataDataStore() {
-        context.dataStore.edit { preferences ->
-            preferences.remove(TOKEN_KEY)
-        }
-    }
 
 }
 
