@@ -9,9 +9,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
 import com.example.domain.AuthRepository
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.firstOrNull
 import navigation.AppNavGraph
 import javax.inject.Inject
 
@@ -54,10 +57,14 @@ class MainActivity : ComponentActivity() {
 
 
 
+
         setContent {
             val navcontroller = rememberNavController()
+
+            val authToken by authDataStore.authTokenFlow.collectAsStateWithLifecycle(initialValue = null)
+
             AppNavGraph(
-                isLogInUser = false,
+                isLogInUser = authToken != null,
                 navController = navcontroller
             )
         }
