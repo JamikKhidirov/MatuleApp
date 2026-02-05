@@ -4,11 +4,10 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.data.TokenDataStore.Companion.TOKEN_KEY
-import com.example.domain.DataStoreRepository
+import com.example.domain.PinCodeRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,7 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class PincodeDataStore @Inject constructor(
     @ApplicationContext context: Context
-): DataStoreRepository {
+): PinCodeRepository {
 
     private val Context.dataStore by preferencesDataStore("pincode")
 
@@ -38,6 +37,8 @@ class PincodeDataStore @Inject constructor(
     val codeFlow: Flow<String?> = _dataStore.data
         .map {preferences ->
             preferences[CODE_KAY]
+        }.catch {
+            emit(null)
         }
 
 

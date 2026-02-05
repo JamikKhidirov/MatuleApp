@@ -1,6 +1,6 @@
 package com.example.domain
 
-interface DataStoreRepository {
+interface PinCodeRepository {
 
 
     suspend fun saveData(data: String)

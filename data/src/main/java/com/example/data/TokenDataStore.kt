@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.domain.DataStoreRepository
+import com.example.domain.AuthRepository
+import com.example.domain.PinCodeRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -18,7 +19,7 @@ private val Context.dataStore by preferencesDataStore("authPrefs")
 @Singleton
 class TokenDataStore @Inject constructor(
     @ApplicationContext private val context: Context
-): DataStoreRepository{
+): AuthRepository{
     companion object {
         val TOKEN_KEY = stringPreferencesKey("auth_token")
         val ID_TOKEN = stringPreferencesKey("id_token")
@@ -34,6 +35,9 @@ class TokenDataStore @Inject constructor(
             preferences[ID_TOKEN]
         }
 
+    override suspend fun saveAuthToken(token: String) {
+        TODO("Not yet implemented")
+    }
 
 
     suspend fun saveIdToken(id: String) {
@@ -42,6 +46,9 @@ class TokenDataStore @Inject constructor(
         }
     }
 
+    override suspend fun clearAuthTokens() {
+        TODO("Not yet implemented")
+    }
 
 
     suspend fun clearIdToken(){
