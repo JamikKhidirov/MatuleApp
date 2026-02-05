@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 
 
 
-        authDataStore.toke
+
 
         setContent {
             val navcontroller = rememberNavController()
