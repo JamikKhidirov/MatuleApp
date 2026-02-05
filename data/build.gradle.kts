@@ -43,6 +43,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.2.0")
     api("com.google.dagger:hilt-android:2.57.2")
     kapt("com.google.dagger:hilt-compiler:2.57.1")
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

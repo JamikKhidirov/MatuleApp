@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.data.TokenDataStore.Companion.TOKEN_KEY
+import com.example.domain.DataStoreRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
@@ -22,7 +23,7 @@ import javax.inject.Singleton
 @Singleton
 class PincodeDataStore @Inject constructor(
     @ApplicationContext context: Context
-) {
+): DataStoreRepository {
 
     private val Context.dataStore by preferencesDataStore("pincode")
 
@@ -40,14 +41,14 @@ class PincodeDataStore @Inject constructor(
         }
 
 
-    suspend fun saveToken(code: String) {
+
+    override suspend fun saveData(data: String) {
         _dataStore.edit { preferences ->
-            preferences[CODE_KAY] = code
+            preferences[CODE_KAY] = data
         }
     }
 
-
-    suspend fun clearCode() {
+    override suspend fun cleatDataDataStore() {
         _dataStore.edit { preferences ->
             preferences.remove(CODE_KAY)
         }

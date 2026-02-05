@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.domain.DataStoreRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -17,7 +18,7 @@ private val Context.dataStore by preferencesDataStore("authPrefs")
 @Singleton
 class TokenDataStore @Inject constructor(
     @ApplicationContext private val context: Context
-) {
+): DataStoreRepository{
     companion object {
         val TOKEN_KEY = stringPreferencesKey("auth_token")
         val ID_TOKEN = stringPreferencesKey("id_token")
@@ -34,11 +35,6 @@ class TokenDataStore @Inject constructor(
         }
 
 
-    suspend fun saveToken(token: String) {
-        context.dataStore.edit { preferences ->
-            preferences[TOKEN_KEY] = token
-        }
-    }
 
     suspend fun saveIdToken(id: String) {
         context.dataStore.edit {  preferences ->
@@ -47,15 +43,22 @@ class TokenDataStore @Inject constructor(
     }
 
 
-    suspend fun clearToken() {
-        context.dataStore.edit { preferences ->
-            preferences.remove(TOKEN_KEY)
-        }
-    }
 
     suspend fun clearIdToken(){
         context.dataStore.edit { preferences ->
             preferences.remove(ID_TOKEN)
+        }
+    }
+
+    override suspend fun saveData(data: String) {
+        context.dataStore.edit { preferences ->
+            preferences[TOKEN_KEY] = data
+        }
+    }
+
+    override suspend fun cleatDataDataStore() {
+        context.dataStore.edit { preferences ->
+            preferences.remove(TOKEN_KEY)
         }
     }
 
