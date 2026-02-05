@@ -33,7 +33,7 @@ object NetworkModule {
                 val originalRequest = chain.request()
 
                 val token = runBlocking {
-                    dataStore.tokenFlow.firstOrNull()
+                    dataStore.authTokenFlow.firstOrNull()
                 }
 
                 val newRequest = originalRequest.newBuilder().apply {
