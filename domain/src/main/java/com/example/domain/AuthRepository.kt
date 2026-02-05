@@ -8,4 +8,5 @@ interface AuthRepository {
     suspend fun saveAuthToken(token: String)
     suspend fun saveIdToken(idToken: String)
     suspend fun clearAuthTokens()
+
 }
