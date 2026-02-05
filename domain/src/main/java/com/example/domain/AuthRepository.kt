@@ -1,6 +1,6 @@
 package com.example.domain
 
-import com.sun.tools.javac.comp.Flow
+import kotlinx.coroutines.flow.Flow
 
 
 interface AuthRepository {
@@ -8,4 +8,6 @@ interface AuthRepository {
     suspend fun saveAuthToken(token: String)
     suspend fun saveIdToken(idToken: String)
     suspend fun clearAuthTokens()
+
+    val authTokenFlow: Flow<String?>
 }

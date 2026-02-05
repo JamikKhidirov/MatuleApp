@@ -1,8 +1,8 @@
 package com.example.data.di
 
 import android.content.Context
-import com.example.data.PincodeDataStore
-import com.example.data.TokenDataStore
+import com.example.data.datastore.PincodeDataStore
+import com.example.data.datastore.TokenDataStore
 import com.example.domain.AuthRepository
 import com.example.domain.PinCodeRepository
 import dagger.Module

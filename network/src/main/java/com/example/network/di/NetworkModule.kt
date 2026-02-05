@@ -1,6 +1,6 @@
 package com.example.network.di
 
-import com.example.data.TokenDataStore
+import com.example.data.datastore.TokenDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
