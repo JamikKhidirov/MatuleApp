@@ -46,7 +46,7 @@ fun PinDigitButton(
     // 3. Анимируем цвет фона
     val backgroundColor by animateColorAsState(
         targetValue = if (isPressed) colorResource(R.color.buttonColor) else Color(0xFFF5F5F9),
-        animationSpec = tween(durationMillis = 150) // Быстрая и плавная анимация
+        animationSpec = tween(durationMillis = 250) // Быстрая и плавная анимация
     )
 
     val contentColor by animateColorAsState(
