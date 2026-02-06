@@ -71,7 +71,7 @@ fun LogInScreenScreen(
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess) {
             // Небольшая задержка для отображения успеха
-            delay(300)
+            delay(200)
             navController.navigate(AuthDestination.CreateUserPincodeScreen) {
                 // Очищаем стек навигации
                 popUpTo(navController.graph.findStartDestination().id) {

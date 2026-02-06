@@ -1,12 +1,19 @@
 package navigation.navgraphsnavigation
 
 
+
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.uikit.screens.home.HomeScreen
 import com.example.uikit.screens.pincode.PinScreen
+import com.example.uikit.screens.pincode.viewModel.PincodeScreenViewModel
+import navigation.destinations.AuthDestination
 import navigation.destinations.HomeDestination
 
 
@@ -15,25 +22,43 @@ fun NavGraphBuilder.homeNavGraph(
 ){
     navigation<HomeDestination.HomeRoot>(startDestination = HomeDestination.UserPincodeScreen){
 
-        composable<HomeDestination.UserPincodeScreen> { backsackEntry ->
-            PinScreen(
-                isCreateMode = false,
-                firstTextScreen = "Вход",
-                onPinEntered = { pincode ->
-                    /*Тут приходит код от пользователя, если код правильный
-                    * пропускаем пользователя на другой экран если нет то не пропускаем! */
-                },
-                onPinVerified = { isCorrect ->
-                    if (isCorrect){
-                        navHostController.navigate(HomeDestination.HomeScreen){
-                            popUpTo(HomeDestination.UserPincodeScreen){
-                                inclusive = true
+        composable<HomeDestination.UserPincodeScreen> { backStackEntry ->
+            // Получаем ViewModel
+            val pinViewModel: PincodeScreenViewModel = hiltViewModel(backStackEntry)
+
+            val savedPin by pinViewModel.savedPinCode
+                .collectAsStateWithLifecycle(initialValue = "LOADING")
+
+            LaunchedEffect(savedPin) {
+                if (savedPin == null) {
+                    navHostController.navigate(AuthDestination.LoginScreen) {
+                        popUpTo(HomeDestination.UserPincodeScreen) { inclusive = true }
+                    }
+                }
+            }
+
+            if (savedPin != null){
+                PinScreen(
+                    isCreateMode = false,
+                    firstTextScreen = "Вход",
+                    onPinEntered = { pincode ->
+                        /*Тут приходит код от пользователя, если код правильный
+                        * пропускаем пользователя на другой экран если нет то не пропускаем! */
+                    },
+                    onPinVerified = { isCorrect ->
+                        if (isCorrect){
+                            navHostController.navigate(HomeDestination.HomeScreen){
+                                popUpTo(HomeDestination.UserPincodeScreen){
+                                    inclusive = true
+                                }
                             }
                         }
-                    }
 
-                }
-            )
+                    }
+                )
+            }
+
+
         }
 
 

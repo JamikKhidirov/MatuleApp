@@ -51,6 +51,7 @@ class PincodeScreenViewModel @Inject constructor(
                         /* Тут мы в режиме первого входа пользователя в аккаунт
                         кэшируем код от пользоавтеля, пожзе мы будем доставать из кэша
                         * */
+                        pincodeDataStore.clearDataDataStore()
                         pincodeDataStore.saveData(enteredPin.value)
                         onPinVerified(true)
                     }
@@ -68,10 +69,6 @@ class PincodeScreenViewModel @Inject constructor(
                             onPinVerified(false)
                         }
                     }
-
-
-
-                    pincodeDataStore.saveData(data = enteredPin.value)
                 }
             }
         }

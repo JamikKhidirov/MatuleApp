@@ -63,17 +63,18 @@ fun NavGraphBuilder.authNavGraph(
         composable<AuthDestination.CreateUserPincodeScreen> {
             PinScreen(
                 isCreateMode = true,
-                onPinVerified = {
-                    navController.navigate(HomeDestination.HomeScreen) {
-                        popUpTo(AuthDestination.CreateUserPincodeScreen) {
-                            inclusive = true
+                firstTextScreen = "Создайте пароль",
+                onPinVerified = { isCorrect ->
+                    if (isCorrect){
+                        navController.navigate(HomeDestination.UserPincodeScreen) {
+                            popUpTo(AuthDestination.AuthRoot) {
+                                inclusive = true
+                            }
                         }
                     }
-                },
+                }
             )
         }
-
-
     }
 
 }

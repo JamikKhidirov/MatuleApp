@@ -34,12 +34,13 @@ import com.example.uikit.screencomponents.buttons.PinDigitButton
 import com.example.uikit.screencomponents.indicators.PinIndicator
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screens.pincode.viewModel.PincodeScreenViewModel
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun PinScreen(
     viewmodel: PincodeScreenViewModel = hiltViewModel(),
-    isCreateMode: Boolean = false,
+    isCreateMode: Boolean,
     onPinVerified: (Boolean) -> Unit,
     firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
@@ -47,8 +48,19 @@ fun PinScreen(
 
     val pinLength = 4
     var enteredPin = viewmodel.enteredPin.collectAsStateWithLifecycle()
+    val isError by viewmodel.isError.collectAsStateWithLifecycle()
 
 
+    LaunchedEffect(Unit) {
+        viewmodel.clearPin()
+    }
+
+    LaunchedEffect(isError) {
+        if (isError) {
+            delay(300)
+            viewmodel.clearPin()
+        }
+    }
 
 
     Scaffold(
