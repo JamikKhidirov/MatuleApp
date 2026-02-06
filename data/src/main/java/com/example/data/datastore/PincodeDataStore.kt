@@ -34,7 +34,7 @@ class PincodeDataStore @Inject constructor(
     private val _dataStore = context.dataStore
 
 
-    val codeFlow: Flow<String?> = _dataStore.data
+    override val codeFlow: Flow<String?> = _dataStore.data
         .map {preferences ->
             preferences[CODE_KAY]
         }.catch {

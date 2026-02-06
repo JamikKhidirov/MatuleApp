@@ -39,7 +39,8 @@ import com.example.uikit.screens.pincode.viewModel.PincodeScreenViewModel
 @Composable
 fun PinScreen(
     viewmodel: PincodeScreenViewModel = hiltViewModel(),
-    navController: NavController,
+    isCreateMode: Boolean = false,
+    onPinVerified: (Boolean) -> Unit,
     firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
 ) {
@@ -65,7 +66,7 @@ fun PinScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Создайте пороль",
+                    text = firstTextScreen,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     fontSize = 28.sp,
@@ -105,6 +106,8 @@ fun PinScreen(
                             val digit = (row * 3 + col).toString()
                             PinDigitButton(digit, content = null,  onClick = { value ->
                                 viewmodel.onNumberClick(
+                                    isCreateMode = isCreateMode,
+                                    onPinVerified = onPinVerified,
                                     d = value,
                                     pinLength = pinLength,
                                     onPinEntered = onPinEntered
@@ -123,6 +126,8 @@ fun PinScreen(
 
                     PinDigitButton("0",content = null,  onClick = {value ->
                         viewmodel.onNumberClick(
+                            isCreateMode = isCreateMode,
+                            onPinVerified = onPinVerified,
                             d = value,
                             pinLength = pinLength,
                             onPinEntered = onPinEntered

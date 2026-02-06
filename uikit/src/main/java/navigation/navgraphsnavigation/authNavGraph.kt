@@ -62,12 +62,14 @@ fun NavGraphBuilder.authNavGraph(
 
         composable<AuthDestination.CreateUserPincodeScreen> {
             PinScreen(
-                navController = navController,
-                onPinEntered = { pincode ->
-                    navController.navigate(HomeDestination.HomeScreen)
-
-                    //Тут я должен сохранить наш pincode в память телефона
-                }
+                isCreateMode = true,
+                onPinVerified = {
+                    navController.navigate(HomeDestination.HomeScreen) {
+                        popUpTo(AuthDestination.CreateUserPincodeScreen) {
+                            inclusive = true
+                        }
+                    }
+                },
             )
         }
 
