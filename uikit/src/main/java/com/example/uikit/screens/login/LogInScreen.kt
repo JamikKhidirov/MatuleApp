@@ -45,8 +45,8 @@ import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screens.login.uistate.UiEvent
 import kotlinx.coroutines.delay
-import navigation.AuthDestination
-import navigation.HomeDestination
+import navigation.destinations.AuthDestination
+import navigation.destinations.HomeDestination
 import com.example.uikit.screens.login.viewModel.LogInViewModel
 
 
@@ -72,7 +72,7 @@ fun LogInScreenScreen(
         if (state.isSuccess) {
             // Небольшая задержка для отображения успеха
             delay(300)
-            navController.navigate(HomeDestination.HomeScreen) {
+            navController.navigate(AuthDestination.CreateUserPincodeScreen) {
                 // Очищаем стек навигации
                 popUpTo(navController.graph.findStartDestination().id) {
                     inclusive = true

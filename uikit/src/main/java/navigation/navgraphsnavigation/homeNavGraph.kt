@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.uikit.screens.home.HomeScreen
-import navigation.HomeDestination
+import navigation.destinations.HomeDestination
 
 
 fun NavGraphBuilder.homeNavGraph(

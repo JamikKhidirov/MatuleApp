@@ -9,15 +9,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.uikit.theme.sfProDisplay
 import kotlinx.coroutines.delay
-import navigation.AuthDestination
-import navigation.HomeDestination
-import navigation.SplashScreenDestination
+import navigation.destinations.AuthDestination
+import navigation.destinations.HomeDestination
+import navigation.destinations.SplashScreenDestination
 
 @Composable
 fun SplashScreen(

@@ -37,10 +37,9 @@ import com.example.uikit.screens.pincode.viewModel.PincodeScreenViewModel
 
 
 @Composable
-@Preview(showBackground = true)
 fun PinScreen(
     viewmodel: PincodeScreenViewModel = hiltViewModel(),
-    navController: NavController = rememberNavController(),
+    navController: NavController,
     firstTextScreen: String = "Cоздайте пороль",
     onPinEntered: (String) -> Unit = {}
 ) {

@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.uikit.screens.splash.SplashScreen
+import navigation.destinations.SplashScreenDestination
 import navigation.navgraphsnavigation.authNavGraph
 import navigation.navgraphsnavigation.homeNavGraph
 

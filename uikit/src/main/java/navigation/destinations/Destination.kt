@@ -1,4 +1,4 @@
-package navigation
+package navigation.destinations
 
 import kotlinx.serialization.Serializable
 
@@ -54,6 +54,10 @@ sealed interface HomeDestination: Destination {
     data object HomeRoot: HomeDestination
 
 
+
+    @Serializable
+    data object UserPincodeScreen: HomeDestination
+
     @Serializable
     data object HomeScreen: HomeDestination
 
@@ -73,8 +77,10 @@ sealed interface HomeDestination: Destination {
 @Serializable
 object SplashScreenDestination: Destination
 
+
+
 @Serializable
-object SplashScreenDestinationRoot: Destination
+data object CatalogScreenDestionation: Destination
 
 
 /**
@@ -87,3 +93,5 @@ data class MySerializableData(
     val name: String,
     val description: String
 )
+
+

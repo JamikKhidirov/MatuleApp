@@ -10,8 +10,8 @@ import com.example.uikit.screens.createuser.CreateUserPassword
 import com.example.uikit.screens.createuser.CreateUserScreen
 import com.example.uikit.screens.login.LogInScreenScreen
 import com.example.uikit.screens.pincode.PinScreen
-import navigation.AuthDestination
-import navigation.HomeDestination
+import navigation.destinations.AuthDestination
+import navigation.destinations.HomeDestination
 import com.example.uikit.screens.createuser.viewModel.CreateUserViewModel
 
 
