@@ -46,12 +46,13 @@ class MainActivity : ComponentActivity() {
         actionBar?.hide()
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
         launcher.launch(
             Manifest.permission.CAMERA
         )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
 
 
 
