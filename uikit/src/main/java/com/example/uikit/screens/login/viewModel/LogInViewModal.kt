@@ -1,4 +1,4 @@
-package viewmodal
+package com.example.uikit.screens.login.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import viewmodal.states.LogInUiState
-import viewmodal.states.UiEvent
+import com.example.uikit.screens.login.uistate.LogInUiState
+import com.example.uikit.screens.login.uistate.UiEvent
 import java.io.IOException
 import javax.inject.Inject
 

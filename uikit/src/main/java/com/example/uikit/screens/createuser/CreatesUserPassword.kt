@@ -30,7 +30,7 @@ import com.example.uikit.screencomponents.text.WelcomeText
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.launch
 import navigation.AuthDestination
-import viewmodal.CreateUserViewModel
+import com.example.uikit.screens.createuser.viewModel.CreateUserViewModel
 
 
 @Composable

@@ -24,7 +24,7 @@ fun SplashScreen(
     isLogInUser: Boolean,
     navController: NavController
 ) {
-    LaunchedEffect(Unit) {
+    LaunchedEffect(isLogInUser) {
         delay(1000)
         val destination = if (isLogInUser) {
             HomeDestination.getHomeRoom()

@@ -43,11 +43,11 @@ import com.example.uikit.screencomponents.text.HelpWellcomeText
 import com.example.uikit.screencomponents.text.TextDescription
 import com.example.uikit.screencomponents.textInput.TextInputUser
 import com.example.uikit.screencomponents.text.WelcomeText
+import com.example.uikit.screens.login.uistate.UiEvent
 import kotlinx.coroutines.delay
 import navigation.AuthDestination
 import navigation.HomeDestination
-import viewmodal.LogInViewModel
-import viewmodal.states.UiEvent
+import com.example.uikit.screens.login.viewModel.LogInViewModel
 
 
 @Composable

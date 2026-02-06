@@ -1,5 +1,4 @@
-package viewmodal
-
+package com.example.uikit.screens.createuser.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -11,12 +10,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 import javax.inject.Inject
-
-
 
 @HiltViewModel
 class CreateUserViewModel @Inject constructor(

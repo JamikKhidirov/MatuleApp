@@ -12,7 +12,7 @@ import com.example.uikit.screens.login.LogInScreenScreen
 import com.example.uikit.screens.pincode.PinScreen
 import navigation.AuthDestination
 import navigation.HomeDestination
-import viewmodal.CreateUserViewModel
+import com.example.uikit.screens.createuser.viewModel.CreateUserViewModel
 
 
 fun NavGraphBuilder.authNavGraph(

@@ -18,9 +18,8 @@ private val Context.dataStore by preferencesDataStore("authPrefs")
 
 @Singleton
 class TokenDataStore @Inject constructor(
-    @ApplicationContext private val context: Context,
-
-): AuthRepository{
+    @ApplicationContext private val context: Context
+): AuthRepository {
     companion object {
         val TOKEN_KEY = stringPreferencesKey("auth_token")
         val ID_TOKEN = stringPreferencesKey("id_token")

@@ -29,7 +29,7 @@ import com.example.uikit.screencomponents.textInput.TextInputUser
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import navigation.AuthDestination
-import viewmodal.CreateUserViewModel
+import com.example.uikit.screens.createuser.viewModel.CreateUserViewModel
 
 
 @SuppressLint("RememberReturnType")
